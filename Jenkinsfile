@@ -1,30 +1,28 @@
 pipeline {
-    agent {
-        docker {
-            image 'openjdk:8-jdk'
-        }
-    }
+    agent any
+
     stages {
-        stage('Test Build') {
+        stage('Run the Test') {
             steps {
-                sh 'mvn clean install'
+                sh '/usr/local/bin/docker-compose up --abort-on-container-exit'
+            }
+        post {
+            always {
+                script {
+                    echo 'Reporting ...'
+                    allure([
+                        includeProperties: false,
+                        jdk: '',
+                        properties: [],
+                        reportBuildPolicy: 'ALWAYS',
+                        results: [[path: 'build/allure-results']]
+                    ])
+                    cucumber buildStatus: "UNSTABLE",
+                                        fileIncludePattern: "**/cucumber.json",
+                                        jsonReportDirectory: 'build'
+                }
             }
         }
-    }
-    post {
-         always {
-             script {
-                 echo 'Reporting ...'
-                 sh 'chmod -R 755 build'
-                 allure([
-                     includeProperties: true,
-                     jdk: '',
-                     properties: [],
-                     reportBuildPolicy: 'ALWAYS',
-                     results: [[path: 'allure-results']]
-                     ])
-                 }
-             }
-         }
+        }
     }
 }
