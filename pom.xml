@@ -123,6 +123,13 @@
             <artifactId>okio</artifactId>
             <version>2.9.0</version>
         </dependency>
+        <!-- testr repo -->
+        <dependency>
+            <groupId>com.symphony.qe</groupId>
+            <artifactId>testr-core</artifactId>
+            <version>${symphony.testr-core.version}</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
 
