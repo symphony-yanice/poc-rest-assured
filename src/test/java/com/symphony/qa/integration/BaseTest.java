@@ -1,5 +1,6 @@
 package com.symphony.qa.integration;
 
+import com.symphony.api.DatafeedApi;
 import com.symphony.api.MessagesApi;
 import com.symphony.api.SignalsApi;
 import com.symphony.api.SystemApi;
@@ -22,10 +23,8 @@ public class BaseTest {
     protected SystemApi systemApi;
     protected SignalsApi signalsApi;
     protected MessagesApi messagesApi;
+    protected DatafeedApi datafeedApi;
 
-    @BeforeEach
-    public void createApi() {
-    }
     @BeforeEach
     public void setup() throws IOException {
         this.config = new Config();
@@ -53,5 +52,13 @@ public class BaseTest {
                         .setContentType(ContentType.JSON)
                         .setRelaxedHTTPSValidation()
         )).messages();
+        this.datafeedApi = ApiClient.api(ApiClient.Config.apiConfig().reqSpecSupplier(
+                () -> new RequestSpecBuilder()
+                        .setConfig(config().objectMapperConfig(objectMapperConfig().defaultObjectMapper(gson())))
+                        .addFilter(new ErrorLoggingFilter())
+                        .setBaseUri(this.config.getProperty("api.agent.baseurl"))
+                        .setContentType(ContentType.JSON)
+                        .setRelaxedHTTPSValidation()
+        )).datafeed();
     }
 }
