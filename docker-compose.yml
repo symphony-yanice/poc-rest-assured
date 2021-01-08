@@ -1,0 +1,10 @@
+version: "2"
+services:
+  runner:
+    image: openjdk:8-jdk
+    volumes:
+      - .:/tests
+    working_dir: /tests
+    environment:
+      - TARGET=docker
+    command: bash -c "mvn clean build && chmod -R 777 ./allure-results"
