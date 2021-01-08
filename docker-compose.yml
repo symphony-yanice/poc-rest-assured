@@ -1,7 +1,7 @@
 version: "2"
 services:
   runner:
-    image: openjdk:8-jdk
+    image: maven:3.6.3-openjdk-8
     volumes:
       - .:/tests
     working_dir: /tests
