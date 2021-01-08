@@ -7,7 +7,6 @@ pipeline {
     stages {
         stage('Test Build') {
             steps {
-                sh 'echo \"Run the Integration tests\"'
                 sh 'mvn clean install'
             }
         }
@@ -23,9 +22,9 @@ pipeline {
                      properties: [],
                      reportBuildPolicy: 'ALWAYS',
                      results: [[path: 'allure-results']]
-                 ])
+                     ])
+                 }
              }
          }
-     }
     }
 }
