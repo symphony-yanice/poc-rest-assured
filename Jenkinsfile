@@ -1,6 +1,9 @@
 pipeline {
-    agent maven:3.6.3-openjdk-8
-
+    agent {
+        docker {
+            image 'maven:3.6.3-openjdk-8'
+        }
+    }
     stages {
         stage('Run the Test') {
             steps {
