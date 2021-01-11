@@ -10,16 +10,11 @@ pipeline {
             always {
                 script {
                     echo 'Reporting ...'
-                    allure([
-                        includeProperties: false,
-                        jdk: '',
-                        properties: [],
-                        reportBuildPolicy: 'ALWAYS',
-                        results: [[path: 'build/allure-results']]
-                    ])
-                    cucumber buildStatus: "UNSTABLE",
-                                        fileIncludePattern: "**/cucumber.json",
-                                        jsonReportDirectory: 'build'
+                    def properties = "VERSION=20.11.0-SNAPSHOT"
+                    properties += "\nSUITE=all-test-suite"
+                    properties += "\nENVIRONMENT=warpdrive-lab"
+                    writeFile(file: "build/allure-results/environment.properties", text: properties, encoding: "UTF-8")
+                    allure results: [[path: 'build/allure-results']]
                 }
             }
         }
