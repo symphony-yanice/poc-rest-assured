@@ -9,6 +9,7 @@ import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
 import io.restassured.response.Response;
 import io.restassured.response.ResponseBody;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.parallel.Execution;
 import org.junit.jupiter.api.parallel.ExecutionMode;
@@ -20,6 +21,7 @@ import org.junit.jupiter.api.parallel.ExecutionMode;
 public class BasicTest2 extends BaseTest {
 
     @Test
+    @DisplayName("Basic test 1")
     @Description("**Scenario** : Example of a BDD Scenario<br/><br/>" +
             "*Given* that I connect to the Agent API<br/>" +
             "*When* I check the health of the endpoint<br/>" +
@@ -37,6 +39,7 @@ public class BasicTest2 extends BaseTest {
     }
 
     @Test
+    @DisplayName("Basic test 2")
     @Description("**Scenario** : Example of a BDD Scenario<br/><br/>" +
             "*Given* that I connect to the Agent API<br/>" +
             "*When* I check the health of the endpoint<br/>" +
@@ -54,6 +57,7 @@ public class BasicTest2 extends BaseTest {
     }
 
     @Test
+    @DisplayName("Basic test 3")
     @Description("**Scenario** : Example of a BDD Scenario<br/><br/>" +
             "*Given* that I connect to the Agent API<br/>" +
             "*When* I check the health of the endpoint<br/>" +
@@ -71,6 +75,7 @@ public class BasicTest2 extends BaseTest {
     }
 
     @Test
+    @DisplayName("Basic test 4")
     @Description("**Scenario** : Example of a BDD Scenario<br/><br/>" +
             "*Given* that I connect to the Agent API<br/>" +
             "*When* I check the health of the endpoint<br/>" +
@@ -88,6 +93,7 @@ public class BasicTest2 extends BaseTest {
     }
 
     @Test
+    @DisplayName("Basic test 5")
     @Description("**Scenario** : Example of a BDD Scenario<br/><br/>" +
             "*Given* that I connect to the Agent API<br/>" +
             "*When* I check the health of the endpoint<br/>" +
@@ -105,6 +111,7 @@ public class BasicTest2 extends BaseTest {
     }
 
     @Test
+    @DisplayName("Basic test 6")
     @Description("**Scenario** : Example of a BDD Scenario<br/><br/>" +
             "*Given* that I connect to the Agent API<br/>" +
             "*When* I check the health of the endpoint<br/>" +
@@ -122,6 +129,7 @@ public class BasicTest2 extends BaseTest {
     }
 
     @Test
+    @DisplayName("Basic test 7")
     @Description("**Scenario** : Example of a BDD Scenario<br/><br/>" +
             "*Given* that I connect to the Agent API<br/>" +
             "*When* I check the health of the endpoint<br/>" +
@@ -139,6 +147,7 @@ public class BasicTest2 extends BaseTest {
     }
 
     @Test
+    @DisplayName("Basic test 8")
     @Description("**Scenario** : Example of a BDD Scenario<br/><br/>" +
             "*Given* that I connect to the Agent API<br/>" +
             "*When* I check the health of the endpoint<br/>" +
@@ -156,6 +165,7 @@ public class BasicTest2 extends BaseTest {
     }
 
     @Test
+    @DisplayName("Basic test 9")
     @Description("**Scenario** : Example of a BDD Scenario<br/><br/>" +
             "*Given* that I connect to the Agent API<br/>" +
             "*When* I check the health of the endpoint<br/>" +
@@ -173,6 +183,7 @@ public class BasicTest2 extends BaseTest {
     }
 
     @Test
+    @DisplayName("Basic test 10")
     @Description("**Scenario** : Example of a BDD Scenario<br/><br/>" +
             "*Given* that I connect to the Agent API<br/>" +
             "*When* I check the health of the endpoint<br/>" +
