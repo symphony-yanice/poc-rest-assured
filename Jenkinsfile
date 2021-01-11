@@ -1,10 +1,10 @@
 pipeline {
-    agent any
+    agent maven:3.6.3-openjdk-8
 
     stages {
         stage('Run the Test') {
             steps {
-                sh '/usr/local/bin/docker-compose up --abort-on-container-exit'
+                sh 'mvn clean install && chmod -R 777 ./allure-results'
             }
         post {
             always {
