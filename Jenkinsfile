@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Run the Test') {
             steps {
-                sh '/usr/local/bin/docker-compose up --abort-on-container-exit'
+                sh '/usr/bin/docker-compose up --abort-on-container-exit'
             }
         post {
             always {
