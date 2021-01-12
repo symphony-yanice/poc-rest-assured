@@ -13,7 +13,13 @@ pipeline {
                     properties += "\nSUITE=all-test-suite"
                     properties += "\nENVIRONMENT=warpdrive-lab"
                     writeFile(file: "build/allure-results/environment.properties", text: properties, encoding: "UTF-8")
-                    allure results: [[path: 'build/allure-results']]
+                    allure([
+                        includeProperties: false,
+                        jdk: '',
+                        properties: [],
+                        reportBuildPolicy: 'ALWAYS',
+                        results: [[path: 'build/allure-results']]
+                    ])
                 }
             }
         }
