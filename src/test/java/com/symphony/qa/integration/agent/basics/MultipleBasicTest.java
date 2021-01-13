@@ -17,7 +17,7 @@ import org.junit.jupiter.api.parallel.ExecutionMode;
 @Feature("Basics")
 @Story("Health Checks")
 @Execution(ExecutionMode.CONCURRENT)
-public class BasicTest2 extends BaseTest {
+public class MultipleBasicTest extends BaseTest {
 
     @Test
     @DisplayName("Basic test 1")
