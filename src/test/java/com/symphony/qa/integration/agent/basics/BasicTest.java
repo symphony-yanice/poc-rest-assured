@@ -15,7 +15,7 @@ import org.junit.jupiter.api.parallel.ExecutionMode;
 
 @Epic("Agent")
 @Feature("Basics")
-@Story("HealthChecks")
+@Story("Health Checks")
 @Execution(ExecutionMode.CONCURRENT)
 public class BasicTest extends BaseTest {
 
