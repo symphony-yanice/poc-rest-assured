@@ -64,8 +64,8 @@ public class MultipleBasicTest extends BaseTest {
     public void testHealth3() {
         Response getResponse = this.systemApi.v2HealthCheckGet().execute(r -> r);
         HttpResponseHelper.assertStatusCode(getResponse, 200);
-        JsonDataHelper.assertTrue(getResponse.getBody().path("podConnectivity"));
-        JsonDataHelper.assertTrue(getResponse.getBody().path("keyManagerConnectivity"));
+        JsonDataHelper.assertFalse(getResponse.getBody().path("podConnectivity"));
+        JsonDataHelper.assertFalse(getResponse.getBody().path("keyManagerConnectivity"));
         JsonDataHelper.assertTrue(getResponse.getBody().path("encryptDecryptSuccess"));
         JsonDataHelper.assertEquals(getResponse.getBody().path("podVersion"), this.config.getProperty("pod.version"));
         JsonDataHelper.assertEquals(getResponse.getBody().path("agentVersion"), this.config.getProperty("agent.version"));
@@ -106,7 +106,7 @@ public class MultipleBasicTest extends BaseTest {
         JsonDataHelper.assertEquals(getResponse.getBody().path("podVersion"), this.config.getProperty("pod.version"));
         JsonDataHelper.assertEquals(getResponse.getBody().path("agentVersion"), this.config.getProperty("agent.version"));
         JsonDataHelper.assertTrue(getResponse.getBody().path("agentServiceUser"));
-        JsonDataHelper.assertTrue(getResponse.getBody().path("ceServiceUser"));
+        JsonDataHelper.assertFalse(getResponse.getBody().path("ceServiceUser"));
     }
 
     @Test
