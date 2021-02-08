@@ -5,28 +5,28 @@ import org.junit.jupiter.api.Assertions;
 
 public class JsonDataHelper {
 
-    @Step("Check the equality of Actual: {actual} and Expected: {expected}")
-    public static void assertEquals(String actual, String expected) {
+    @Step("Check that {fieldName} is equal to: {expected}")
+    public static void assertEquals(String filedName, String actual, String expected) {
         Assertions.assertEquals(actual, expected, "The expected result should be: " + expected);
     }
 
-    @Step("Check the equality of Actual: {actual} and Expected: {expected}")
-    public static void assertEquals(int actual, int expected) {
+    @Step("Check that {fieldName} is equal to: {expected}")
+    public static void assertEquals(String filedName, int actual, int expected) {
         Assertions.assertEquals(actual, expected, "The expected result should be: " + expected);
     }
 
-    @Step("Check the equality of Actual: {actual} and Expected: {expected}")
-    public static void assertEquals(boolean actual, boolean expected) {
+    @Step("Check that {fieldName} is equal to: {expected}")
+    public static void assertEquals(String filedName, boolean actual, boolean expected) {
         Assertions.assertEquals(actual, expected, "The expected result should be: " + expected);
     }
 
-    @Step("Check that Actual: {actual} is True")
-    public static void assertTrue(boolean actual) {
+    @Step("Check that {fieldName} is True")
+    public static void assertTrue(String fieldName, boolean actual) {
         Assertions.assertTrue(actual, "The result should be: True");
     }
 
-    @Step("Check that Actual: {actual} is False")
-    public static void assertFalse(boolean actual) {
+    @Step("Check that {fieldName} is True")
+    public static void assertFalse(String filedName, boolean actual) {
         Assertions.assertFalse(actual, "The result should be: False");
     }
 
