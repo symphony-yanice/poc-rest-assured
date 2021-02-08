@@ -6,17 +6,17 @@ import org.junit.jupiter.api.Assertions;
 public class JsonDataHelper {
 
     @Step("Check that {fieldName} is equal to: {expected}")
-    public static void assertEquals(String filedName, String actual, String expected) {
+    public static void assertEquals(String fieldName, String actual, String expected) {
         Assertions.assertEquals(actual, expected, "The expected result should be: " + expected);
     }
 
     @Step("Check that {fieldName} is equal to: {expected}")
-    public static void assertEquals(String filedName, int actual, int expected) {
+    public static void assertEquals(String fieldName, int actual, int expected) {
         Assertions.assertEquals(actual, expected, "The expected result should be: " + expected);
     }
 
     @Step("Check that {fieldName} is equal to: {expected}")
-    public static void assertEquals(String filedName, boolean actual, boolean expected) {
+    public static void assertEquals(String fieldName, boolean actual, boolean expected) {
         Assertions.assertEquals(actual, expected, "The expected result should be: " + expected);
     }
 
