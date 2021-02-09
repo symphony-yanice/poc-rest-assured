@@ -7,7 +7,7 @@ pipeline {
           name: 'AGENT')
         choice(
           choices: ['ePod', 'MT'],
-          description: 'Select an environment.',
+          description: 'Select an architecture.',
           name: 'ENVIRONMENT')
         choice(
           choices: ['All', 'Attachment', 'Datafeed', 'Firehose', 'Healthcheck', 'Messaging', 'Registration', 'Signals'],
@@ -32,7 +32,7 @@ pipeline {
                     TODAY = now.format("MMM dd, yyyy", TimeZone.getTimeZone('UTC'))
                     def properties = "${env.AUTOMATED_AGENT_VERSION}"
                     properties += "\nSUITE          =   ${env.AUTOMATED_AGENT_SUITE}"
-                    properties += "\nENVIRONMENT    =   ${env.AUTOMATED_AGENT_ENV}"
+                    properties += "\nARCHITECTURE   =   ${env.AUTOMATED_AGENT_ENV}"
                     properties += "\nDATE           =   ${TODAY}"
                     writeFile(file: "allure-results/environment.properties", text: properties, encoding: "UTF-8")
                     allure([
