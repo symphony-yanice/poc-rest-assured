@@ -31,7 +31,6 @@ pipeline {
                     def properties = "${env.AUTOMATED_AGENT_VERSION}"
                     properties += "\nSUITE          =   ${env.AUTOMATED_AGENT_SUITE}"
                     properties += "\nENVIRONMENT    =   ${env.AUTOMATED_AGENT_ENV}"
-                    properties += "\nAGENT VERSION  =   ${env.AUTOMATED_AGENT_VERSION}"
                     writeFile(file: "allure-results/environment.properties", text: properties, encoding: "UTF-8")
                     allure([
                         includeProperties: false,
