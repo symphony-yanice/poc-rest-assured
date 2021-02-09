@@ -10,8 +10,8 @@ pipeline {
           description: 'Select an environment.',
           name: 'ENVIRONMENT')
         choice(
-          choices: ['All', 'Attachment', 'Blast', 'Echo', 'Registration'],
-          description: 'Select an environment.',
+          choices: ['All', 'Attachment', 'Datafeed', 'Firehose', 'Healthcheck', 'Messaging', 'Registration', 'Signals'],
+          description: 'Select a test suite.',
           name: 'SUITE')
     }
     environment {
@@ -38,10 +38,10 @@ pipeline {
                         properties: [],
                         reportBuildPolicy: 'ALWAYS',
                         results: [[path: 'allure-results']]
-                    ])
+                        ])
+                    }
                 }
             }
-        }
         }
     }
 }
