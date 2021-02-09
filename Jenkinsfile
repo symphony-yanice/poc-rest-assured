@@ -29,7 +29,7 @@ pipeline {
                 script {
                     echo 'Reporting ...'
                     def now = new Date()
-                    TODAY = now.format("yyMMdd", TimeZone.getTimeZone('UTC'))
+                    TODAY = now.format("MMM dd, yyyy", TimeZone.getTimeZone('UTC'))
                     def properties = "${env.AUTOMATED_AGENT_VERSION}"
                     properties += "\nSUITE          =   ${env.AUTOMATED_AGENT_SUITE}"
                     properties += "\nENVIRONMENT    =   ${env.AUTOMATED_AGENT_ENV}"
