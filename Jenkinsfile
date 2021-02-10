@@ -36,7 +36,7 @@ pipeline {
                     properties += "\nDATE           =   ${TODAY}"
                     writeFile(file: "allure-results/environment.properties", text: properties, encoding: "UTF-8")
                     def patterns = "allure.link.issue.pattern=https://perzoinc.atlassian.net/browse/%s"
-                    writeFile(file: "allure-results/allure.properties", text: patterns, encoding: "UTF-8")
+                    writeFile(file: "src/test/resources/allure.properties", text: patterns, encoding: "UTF-8")
                     allure([
                         includeProperties: true,
                         jdk: '',
