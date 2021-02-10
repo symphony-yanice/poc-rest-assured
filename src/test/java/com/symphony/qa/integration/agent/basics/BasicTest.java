@@ -3,10 +3,7 @@ package com.symphony.qa.integration.agent.basics;
 import com.symphony.qa.helpers.HttpResponseHelper;
 import com.symphony.qa.helpers.JsonDataHelper;
 import com.symphony.qa.integration.BaseTest;
-import io.qameta.allure.Description;
-import io.qameta.allure.Epic;
-import io.qameta.allure.Feature;
-import io.qameta.allure.Story;
+import io.qameta.allure.*;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -25,6 +22,7 @@ public class BasicTest extends BaseTest {
             "*Given* that I connect to the Agent API<br/>" +
             "*When* I check the health of the endpoint<br/>" +
             "*Then* I expect to have a successful answer<br/>")
+    @Issue("PLAT-10399")
     public void testHealthV2() {
         Response getResponse = this.systemApi.v2HealthCheckGet().execute(r -> r);
         HttpResponseHelper.assertStatusCode(getResponse, 200);
