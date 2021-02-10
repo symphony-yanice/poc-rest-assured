@@ -38,7 +38,7 @@ pipeline {
                     allure([
                         includeProperties: false,
                         jdk: '',
-                        properties: [],
+                        properties: [[key: 'allure.issues.tracker.pattern', value: 'https://perzoinc.atlassian.net/browse/%s']],
                         reportBuildPolicy: 'ALWAYS',
                         results: [[path: 'allure-results']]
                         ])
