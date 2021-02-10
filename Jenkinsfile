@@ -35,10 +35,6 @@ pipeline {
                     properties += "\nARCHITECTURE   =   ${env.AUTOMATED_AGENT_ENV}"
                     properties += "\nDATE           =   ${TODAY}"
                     writeFile(file: "allure-results/environment.properties", text: properties, encoding: "UTF-8")
-                    def patterns = "allure.results.directory=allure-results"
-                    patterns += "\nallure.link.issue.pattern=https://perzoinc.atlassian.net/browse/\{\}"
-                    patterns += "\nallure.link.tms.pattern=https://perzoinc.atlassian.net/browse/\{\}"
-                    writeFile(file: "src/test/resources/allure.properties", text: patterns, encoding: "UTF-8")
                     allure([
                         includeProperties: true,
                         jdk: '',
