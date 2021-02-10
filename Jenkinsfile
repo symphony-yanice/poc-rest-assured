@@ -36,10 +36,9 @@ pipeline {
                     properties += "\nDATE           =   ${TODAY}"
                     writeFile(file: "allure-results/environment.properties", text: properties, encoding: "UTF-8")
                     allure([
-                        includeProperties: false,
+                        includeProperties: true,
                         jdk: '',
-                        properties: [[key: 'allure.issues.tracker.pattern', value: 'https://perzoinc.atlassian.net/browse/%s'],
-                                     [key: 'allure.tests.management.pattern', value: 'https://perzoinc.atlassian.net/browse/%s']],
+                        properties: [[key: 'allure.issues.tracker.pattern', value: 'https://perzoinc.atlassian.net/browse/%s']],
                         reportBuildPolicy: 'ALWAYS',
                         results: [[path: 'allure-results']]
                         ])
