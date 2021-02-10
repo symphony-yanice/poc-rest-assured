@@ -23,7 +23,6 @@ public class BasicTest extends BaseTest {
             "*When* I check the health of the endpoint<br/>" +
             "*Then* I expect to have a successful answer<br/>")
     @Issue("PLAT-10399")
-    @Link("PLAT-10399")
     public void testHealthV2() {
         Response getResponse = this.systemApi.v2HealthCheckGet().execute(r -> r);
         HttpResponseHelper.assertStatusCode(getResponse, 200);
