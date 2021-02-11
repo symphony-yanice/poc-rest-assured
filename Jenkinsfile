@@ -22,7 +22,7 @@ pipeline {
     stages {
         stage('Run the Test') {
             steps {
-                timestamp {
+                timestamps {
                     sh '/usr/local/bin/docker-compose up --abort-on-container-exit'
                 }
             }
