@@ -1,5 +1,9 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image   'maven:3.6.3-openjdk-8'
+        }
+    }
     parameters {
         choice(
           choices: ['VERSION=20.12.0-SNAPSHOT', 'VERSION=20.11.0-SNAPSHOT', 'VERSION=20.10.0-SNAPSHOT', 'VERSION=20.9.0-SNAPSHOT'],
@@ -23,7 +27,7 @@ pipeline {
         stage('Run the Test') {
             steps {
                 timestamps {
-                    sh '/usr/local/bin/docker-compose up --abort-on-container-exit'
+                    sh 'bash -c \"mvn clean test && chmod -R 777 ./build/allure-results\"'
                 }
             }
         post {
