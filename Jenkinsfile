@@ -1,10 +1,5 @@
 pipeline {
-    agent {
-        docker {
-            image   'maven:3.6.3-openjdk-8'
-            args    '-v /Users/yanice.cherrak/.jenkins/workspace:/build/allure-results'
-        }
-    }
+    agent any
     parameters {
         choice(
           choices: ['VERSION=20.12.0-SNAPSHOT', 'VERSION=20.11.0-SNAPSHOT', 'VERSION=20.10.0-SNAPSHOT', 'VERSION=20.9.0-SNAPSHOT'],
@@ -27,6 +22,12 @@ pipeline {
     stages {
         stage('Run the Test') {
             steps {
+                agent {
+                    docker {
+                        image   'maven:3.6.3-openjdk-8'
+                        args    '-v ./:/tests'
+                    }
+                }
                 timestamps {
                     sh 'mvn clean test && chmod -R 777 ./build/allure-results'
                 }
