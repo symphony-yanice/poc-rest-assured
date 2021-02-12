@@ -2,7 +2,7 @@ pipeline {
     agent {
         docker {
             image   'maven:3.6.3-openjdk-8'
-            args    '-v .:/tests'
+            args    '-v /tmp/jenkins:/tests'
         }
     }
     parameters {
