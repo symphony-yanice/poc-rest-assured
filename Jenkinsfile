@@ -27,7 +27,7 @@ pipeline {
         stage('Run the Test') {
             steps {
                 timestamps {
-                    sh 'mvn clean test && chmod -R 777 ./build/allure-results'
+                    sh 'bash -c \"mvn clean test && chmod -R 777 ./build/allure-results\"'
                 }
             }
         post {
