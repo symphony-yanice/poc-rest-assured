@@ -21,13 +21,13 @@ pipeline {
     }
     stages {
         stage('Run the Test') {
-            steps {
-                agent {
-                    docker {
-                        image   'maven:3.6.3-openjdk-8'
-                        args    '-v ./:/tests'
-                    }
+            agent {
+                docker {
+                    image   'maven:3.6.3-openjdk-8'
+                    args    '-v ./:/tests'
                 }
+            }
+            steps {
                 timestamps {
                     sh 'mvn clean test && chmod -R 777 ./build/allure-results'
                 }
