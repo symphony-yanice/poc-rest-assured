@@ -32,8 +32,8 @@ pipeline {
                 }
             }
         }
-        stage('Report') {
-            steps {
+        post {
+            always {
                 script {
                     echo 'Reporting ...'
                     def now = new Date()
@@ -55,3 +55,4 @@ pipeline {
         }
     }
 }
+
