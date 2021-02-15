@@ -28,7 +28,7 @@ pipeline {
             }
             steps {
                 timestamps {
-                    sh 'mvn clean test && chmod -R 777 ./build/allure-results'
+                    sh 'mvn clean test && chmod -R 777 ./target/allure-results'
                 }
             }
         }
