@@ -31,6 +31,10 @@ pipeline {
                     sh 'mvn clean test && chmod -R 777 ./target/allure-results'
                 }
             }
+        }
+    }
+    stages {
+        stage('Generating test report') {
             agent any
             post {
                 always {
