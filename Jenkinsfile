@@ -36,10 +36,14 @@ pipeline {
     stages {
         stage('Generating test report') {
             agent any
+            steps {
+                timestamps {
+                    sh 'echo \'Reporting ...\''
+                }
+            }
             post {
                 always {
                     script {
-                        echo 'Reporting ...'
                         def now = new Date()
                         TODAY = now.format("MMM dd, yyyy", TimeZone.getTimeZone('UTC'))
                         def properties = "${env.AUTOMATED_AGENT_VERSION}"
