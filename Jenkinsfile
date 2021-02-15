@@ -20,7 +20,7 @@ pipeline {
         AUTOMATED_AGENT_ENV = "${params.ENVIRONMENT}"
     }
     stages {
-        stage('Run the Test') {
+        stage('Run the E2E Tests') {
             agent {
                 docker {
                     image   'maven:3.6.3-openjdk-8'
