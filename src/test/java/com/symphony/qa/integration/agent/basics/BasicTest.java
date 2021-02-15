@@ -26,7 +26,7 @@ public class BasicTest extends BaseTest {
     public void testHealthV2() {
         Response getResponse = this.systemApi.v2HealthCheckGet().execute(r -> r);
         HttpResponseHelper.assertStatusCode(getResponse, 200);
-        JsonDataHelper.assertFalse("podConnectivity", getResponse.getBody().path("podConnectivity"));
+        JsonDataHelper.assertTrue("podConnectivity", getResponse.getBody().path("podConnectivity"));
         JsonDataHelper.assertTrue("keyManagerConnectivity", getResponse.getBody().path("keyManagerConnectivity"));
         JsonDataHelper.assertTrue("encryptDecryptSuccess", getResponse.getBody().path("encryptDecryptSuccess"));
         JsonDataHelper.assertEquals("podVersion", getResponse.getBody().path("podVersion"), this.config.getProperty("pod.version"));
