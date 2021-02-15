@@ -47,6 +47,7 @@ pipeline {
                     includeProperties: true,
                     jdk: '',
                     properties: [],
+                    configPath: 'allure.yml',
                     reportBuildPolicy: 'ALWAYS',
                     results: [[path: 'target/allure-results']]
                 ])
