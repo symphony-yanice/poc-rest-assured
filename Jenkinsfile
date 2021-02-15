@@ -40,7 +40,7 @@ pipeline {
                 TODAY = now.format("MMM dd, yyyy", TimeZone.getTimeZone('UTC'))
                 def properties = "${env.AUTOMATED_AGENT_VERSION}"
                 properties += "\nSUITE          =   ${env.AUTOMATED_AGENT_SUITE}"
-                properties += "\nARCHITECTURE   =   ${env.AUTOMATED_AGENT_ENV}"
+                properties += "\nINFRASTRUCTURE =   ${env.AUTOMATED_AGENT_ENV}"
                 properties += "\nDATE           =   ${TODAY}"
                 writeFile(file: "./allure-results/environment.properties", text: properties, encoding: "UTF-8")
                 allure([
