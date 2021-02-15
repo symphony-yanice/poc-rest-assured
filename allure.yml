@@ -1,3 +1,4 @@
 plugins:
+  - behaviors-plugin
   - custom-logo-plugin
   - xray-plugin
