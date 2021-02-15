@@ -18,6 +18,3 @@ gen
 
 # MacOS specific
 .DS_Store
-
-target
-allure-results
