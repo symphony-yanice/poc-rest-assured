@@ -29,7 +29,7 @@ pipeline {
             steps {
                 timestamps {
                     sh 'mvn clean test'
-                    sh 'chmod 777 allure-results'
+                    sh 'chmod -R 777 build'
                 }
             }
         }
@@ -43,11 +43,11 @@ pipeline {
                 properties += "\nSUITE          =   ${env.AUTOMATED_AGENT_SUITE}"
                 properties += "\nINFRASTRUCTURE =   ${env.AUTOMATED_AGENT_ENV}"
                 properties += "\nDATE           =   ${TODAY}"
-                writeFile(file: "allure-results/environment.properties", text: properties, encoding: "UTF-8")
+                writeFile(file: "build/allure-results/environment.properties", text: properties, encoding: "UTF-8")
                 allure([
                     configPath: 'src/test/resources/allure-plugins.yml',
                     reportBuildPolicy: 'ALWAYS',
-                    results: [[path: 'allure-results']]
+                    results: [[path: 'build/allure-results']]
                 ])
             }
         }
