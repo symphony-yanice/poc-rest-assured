@@ -157,6 +157,10 @@
                             <name>junit.jupiter.extensions.autodetection.enabled</name>
                             <value>true</value>
                         </property>
+                        <allure.report.directory>build/allure-report</allure.report.directory>
+                        <allure.results.directory>build/allure-results</allure.results.directory>
+                        <allure.link.issue.pattern>https://perzoinc.atlassian.net/browse/{}</allure.link.issue.pattern>
+                        <allure.link.tms.pattern>https://perzoinc.atlassian.net/browse/{}</allure.link.tms.pattern>
                     </systemProperties>
                 </configuration>
                 <dependencies>
