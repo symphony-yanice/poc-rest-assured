@@ -42,14 +42,14 @@ pipeline {
                 properties += "\nSUITE          =   ${env.AUTOMATED_AGENT_SUITE}"
                 properties += "\nARCHITECTURE   =   ${env.AUTOMATED_AGENT_ENV}"
                 properties += "\nDATE           =   ${TODAY}"
-                writeFile(file: "build/allure-results/environment.properties", text: properties, encoding: "UTF-8")
+                writeFile(file: "target/allure-results/environment.properties", text: properties, encoding: "UTF-8")
                 allure([
                     includeProperties: true,
                     jdk: '',
                     properties: [],
-                    configPath: 'allure.yml',
+                    configPath: 'src/test/resources/allure-plugins.yml',
                     reportBuildPolicy: 'ALWAYS',
-                    results: [[path: 'build/allure-results']]
+                    results: [[path: 'target/allure-results']]
                 ])
             }
         }
