@@ -27,7 +27,7 @@ pipeline {
                 }
             }
             steps {
-                sh 'mvn clean test && chmod -R 777 allure-*'
+                sh 'mvn clean test && chmod -R 777 build'
             }
         }
     }
