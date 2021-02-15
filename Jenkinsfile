@@ -32,24 +32,24 @@ pipeline {
                 }
             }
         }
-        post {
-            always {
-                script {
-                    def now = new Date()
-                    TODAY = now.format("MMM dd, yyyy", TimeZone.getTimeZone('UTC'))
-                    def properties = "${env.AUTOMATED_AGENT_VERSION}"
-                    properties += "\nSUITE          =   ${env.AUTOMATED_AGENT_SUITE}"
-                    properties += "\nARCHITECTURE   =   ${env.AUTOMATED_AGENT_ENV}"
-                    properties += "\nDATE           =   ${TODAY}"
-                    writeFile(file: "allure-results/environment.properties", text: properties, encoding: "UTF-8")
-                    allure([
-                        includeProperties: true,
-                        jdk: '',
-                        properties: [],
-                        reportBuildPolicy: 'ALWAYS',
-                        results: [[path: 'target/allure-results']]
-                    ])
-                }
+    }
+    post {
+        always {
+            script {
+                def now = new Date()
+                TODAY = now.format("MMM dd, yyyy", TimeZone.getTimeZone('UTC'))
+                def properties = "${env.AUTOMATED_AGENT_VERSION}"
+                properties += "\nSUITE          =   ${env.AUTOMATED_AGENT_SUITE}"
+                properties += "\nARCHITECTURE   =   ${env.AUTOMATED_AGENT_ENV}"
+                properties += "\nDATE           =   ${TODAY}"
+                writeFile(file: "allure-results/environment.properties", text: properties, encoding: "UTF-8")
+                allure([
+                    includeProperties: true,
+                    jdk: '',
+                    properties: [],
+                    reportBuildPolicy: 'ALWAYS',
+                    results: [[path: 'target/allure-results']]
+                ])
             }
         }
     }
