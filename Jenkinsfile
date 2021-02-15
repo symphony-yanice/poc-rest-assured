@@ -32,8 +32,6 @@ pipeline {
                 }
             }
         }
-    }
-    stages {
         stage('Generating test report') {
             agent any
             steps {
