@@ -7,4 +7,4 @@ services:
     working_dir: /tests
     environment:
       - TARGET=docker
-    command: bash -c "mvn clean test && chmod -R 777 ./build/allure-results"
+    command: bash -c "mvn clean test && chmod -R 777 ./target/allure-results"
