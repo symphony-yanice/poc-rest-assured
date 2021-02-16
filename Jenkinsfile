@@ -38,8 +38,8 @@ pipeline {
             steps {
                 script {
                     def apiProperties = "api.agent.baseurl=${env.AUTOMATED_AGENT_BASEURL}"
-                    def dataProperties = "agent.version=${env.AUTOMATED_AGENT_VERSION}"
-                    dataProperties += "pod.version=${env.AUTOMATED_POD_VERSION}"
+                    def dataProperties = "pod.version=${env.AUTOMATED_POD_VERSION}"
+                    dataProperties += "\nagent.version=${env.AUTOMATED_AGENT_VERSION}"
                     writeFile(file: "src/test/resources/configuration/environment/api.properties",
                         text: apiProperties,
                         encoding: "UTF-8")
