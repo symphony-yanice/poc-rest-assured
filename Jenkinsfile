@@ -5,14 +5,18 @@ pipeline {
         }
     }
     parameters {
-        text(
+        string(
           defaultValue: 'https://develop2.symphony.com/agent',
           description: 'Select a base URL.',
           name: 'BASEURL')
-        choice(
-          choices: ['VERSION=20.12.0-SNAPSHOT', 'VERSION=20.11.0-SNAPSHOT', 'VERSION=20.10.0-SNAPSHOT', 'VERSION=20.9.0-SNAPSHOT'],
+        string(
+          defaultValue: '20.10.0',
           description: 'Select an agent version.',
-          name: 'AGENT')
+          name: 'PODVERSION')
+        string(
+          defaultValue: '2.62.2',
+          description: 'Select an agent version.',
+          name: 'AGENTVERSION')
         choice(
           choices: ['ePod', 'MT'],
           description: 'Select an architecture.',
@@ -24,7 +28,8 @@ pipeline {
     }
     environment {
         AUTOMATED_AGENT_BASEURL = "${params.BASEURL}"
-        AUTOMATED_AGENT_VERSION = "${params.AGENT}"
+        AUTOMATED_POD_VERSION = "${params.PODVERSION}"
+        AUTOMATED_AGENT_VERSION = "${params.AGENTVERSION}"
         AUTOMATED_AGENT_SUITE = "${params.SUITE}"
         AUTOMATED_AGENT_ENV = "${params.ENVIRONMENT}"
     }
@@ -33,6 +38,8 @@ pipeline {
             steps {
                 script {
                     def apiProperties = "api.agent.baseurl=${env.AUTOMATED_AGENT_BASEURL}"
+                    def dataProperties = "agent.version=${env.AUTOMATED_AGENT_VERSION}"
+                    dataProperties += "pod.version=${env.AUTOMATED_POD_VERSION}"
                     writeFile(file: "src/test/resources/configuration/environment/api.properties",
                         text: apiProperties,
                         encoding: "UTF-8")
@@ -45,8 +52,9 @@ pipeline {
         always {
             script {
                 def now = new Date()
-                TODAY = now.format("MMM dd, yyyy", TimeZone.getTimeZone('UTC'))
-                def properties = "${env.AUTOMATED_AGENT_VERSION}"
+                TODAY = now.format("MMM dd, yyyy - hh:mm", TimeZone.getTimeZone('UTC'))
+                def properties = "AGENT VERSION   =   ${env.AUTOMATED_AGENT_VERSION}"
+                properties += "\nPOD VERSION    =   ${env.AUTOMATED_POD_SUITE}"
                 properties += "\nSUITE          =   ${env.AUTOMATED_AGENT_SUITE}"
                 properties += "\nINFRASTRUCTURE =   ${env.AUTOMATED_AGENT_ENV}"
                 properties += "\nDATE           =   ${TODAY}"
