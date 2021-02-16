@@ -42,6 +42,11 @@ pipeline {
                 properties += "\nDATE           =   ${TODAY}"
                 writeFile(file: "build/allure-results/environment.properties", text: properties, encoding: "UTF-8")
                 allure([
+                    includeProperties: true,
+                    jdk: '',
+                    properties: [],
+                    configPath: 'src/test/resources/allure-plugins.yml',
+                    reportBuildPolicy: 'ALWAYS',
                     results: [[path: 'build/allure-results']]
                 ])
             }
