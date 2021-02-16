@@ -21,8 +21,13 @@ pipeline {
     }
     stages {
         stage('Run the E2E Tests') {
+            agent {
+                docker {
+                    image   'maven:3.6.3-openjdk-8'
+                }
+            }
             steps {
-                sh '/usr/local/bin/docker-compose up --abort-on-container-exit'
+                sh 'mvn clean test && chmod -R 777 ./allure-results'
             }
         }
     }
