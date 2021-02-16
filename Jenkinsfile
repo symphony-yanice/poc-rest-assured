@@ -5,6 +5,10 @@ pipeline {
         }
     }
     parameters {
+        text(
+          defaultValue: 'https://develop2.symphony.com/agent',
+          description: 'Select a base URL.',
+          name: 'BASEURL')
         choice(
           choices: ['VERSION=20.12.0-SNAPSHOT', 'VERSION=20.11.0-SNAPSHOT', 'VERSION=20.10.0-SNAPSHOT', 'VERSION=20.9.0-SNAPSHOT'],
           description: 'Select an agent version.',
@@ -19,11 +23,18 @@ pipeline {
           name: 'SUITE')
     }
     environment {
+        AUTOMATED_AGENT_BASEURL = "${params.BASEURL}"
         AUTOMATED_AGENT_VERSION = "${params.AGENT}"
         AUTOMATED_AGENT_SUITE = "${params.SUITE}"
         AUTOMATED_AGENT_ENV = "${params.ENVIRONMENT}"
     }
     stages {
+        script {
+            def apiProperties = "api.agent.baseurl=${env.AUTOMATED_AGENT_BASEURL}"
+            writeFile(file: "src/test/resources/configuration/environment/api.properties",
+                text: apiProperties,
+                encoding: "UTF-8")
+        }
         stage('Run the E2E Tests') {
             steps {
                 sh 'mvn clean test && chmod -R 777 ./allure-results'
