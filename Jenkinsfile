@@ -30,14 +30,16 @@ pipeline {
     }
     stages {
         script {
-            def apiProperties = "api.agent.baseurl=${env.AUTOMATED_AGENT_BASEURL}"
-            writeFile(file: "src/test/resources/configuration/environment/api.properties",
-                text: apiProperties,
-                encoding: "UTF-8")
         }
         stage('Run the E2E Tests') {
             steps {
-                sh 'mvn clean test && chmod -R 777 ./allure-results'
+                script {
+                    def apiProperties = "api.agent.baseurl=${env.AUTOMATED_AGENT_BASEURL}"
+                    writeFile(file: "src/test/resources/configuration/environment/api.properties",
+                        text: apiProperties,
+                        encoding: "UTF-8")
+                    sh 'mvn clean test && chmod -R 777 ./allure-results'
+                }
             }
         }
     }
