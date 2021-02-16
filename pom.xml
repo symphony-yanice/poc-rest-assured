@@ -141,6 +141,10 @@
                 <groupId>io.qameta.allure</groupId>
                 <artifactId>allure-maven</artifactId>
                 <version>2.10.0</version>
+                <configuration>
+                    <resultsDirectory>${project.basedir}/target/allure-results</resultsDirectory>
+                    <reportDirectory>${project.basedir}/allure-report</reportDirectory>
+                </configuration>
             </plugin>
             <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-surefire-plugin -->
             <plugin>
@@ -148,6 +152,7 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven-surefire.version}</version>
                 <configuration>
+                    <reportsDirectory>${project.basedir}/target</reportsDirectory>
                     <testFailureIgnore>false</testFailureIgnore>
                     <argLine>
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/1.9.6/aspectjweaver-1.9.6.jar"
@@ -157,8 +162,6 @@
                             <name>junit.jupiter.extensions.autodetection.enabled</name>
                             <value>true</value>
                         </property>
-                        <allure.report.directory>target/allure-report</allure.report.directory>
-                        <allure.results.directory>target/allure-results</allure.results.directory>
                         <allure.link.issue.pattern>https://perzoinc.atlassian.net/browse/{}</allure.link.issue.pattern>
                         <allure.link.tms.pattern>https://perzoinc.atlassian.net/browse/{}</allure.link.tms.pattern>
                     </systemProperties>
