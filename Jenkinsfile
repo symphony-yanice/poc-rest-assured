@@ -42,7 +42,7 @@ pipeline {
                     properties: [],
                     configPath: 'src/test/resources/config.yml',
                     reportBuildPolicy: 'ALWAYS',
-                    results: [[path: 'target/allure-results']]
+                    results: [[path: 'allure-results']]
                 ])
             }
         }
