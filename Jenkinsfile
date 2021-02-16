@@ -22,7 +22,7 @@ pipeline {
     stages {
         stage('Run the E2E Tests') {
             steps {
-                sh 'docker-compose up --abort-on-container-exit'
+                sh '/usr/local/bin/docker-compose up --abort-on-container-exit'
             }
         }
     }
