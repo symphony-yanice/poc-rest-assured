@@ -56,8 +56,8 @@ pipeline {
             script {
                 def now = new Date()
                 TODAY = now.format("MMM dd, yyyy - hh:mm", TimeZone.getTimeZone('UTC'))
-                def properties = "AGENT VERSION   =   ${env.AUTOMATED_AGENT_VERSION}"
-                properties += "\nPOD VERSION    =   ${env.AUTOMATED_POD_SUITE}"
+                def properties = "AGENT_VERSION   =   ${env.AUTOMATED_AGENT_VERSION}"
+                properties += "\nPOD_VERSION    =   ${env.AUTOMATED_POD_VERSION}"
                 properties += "\nSUITE          =   ${env.AUTOMATED_AGENT_SUITE}"
                 properties += "\nINFRASTRUCTURE =   ${env.AUTOMATED_AGENT_ENV}"
                 properties += "\nDATE           =   ${TODAY}"
