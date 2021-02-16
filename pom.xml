@@ -21,8 +21,8 @@
         <hamcrest.version>1.3</hamcrest.version>
         <slf4j.version>1.7.30</slf4j.version>
         <!-- Test parallelization -->
-        <maven-surefire.version>3.0.0-M5</maven-surefire.version>
-        <maven-failsafe.version>3.0.0-M5</maven-failsafe.version>
+        <maven-surefire.version>2.22.2</maven-surefire.version>
+        <maven-failsafe.version>2.22.2</maven-failsafe.version>
         <junit-platform.version>1.7.0</junit-platform.version>
         <!-- API configuration -->
         <openapi-codegen.version>5.0.0</openapi-codegen.version>
