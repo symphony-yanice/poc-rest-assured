@@ -29,8 +29,6 @@ pipeline {
         AUTOMATED_AGENT_ENV = "${params.ENVIRONMENT}"
     }
     stages {
-        script {
-        }
         stage('Run the E2E Tests') {
             steps {
                 script {
