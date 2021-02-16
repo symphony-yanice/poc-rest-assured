@@ -43,6 +43,9 @@ pipeline {
                     writeFile(file: "src/test/resources/configuration/environment/api.properties",
                         text: apiProperties,
                         encoding: "UTF-8")
+                    writeFile(file: "src/test/resources/configuration/environment/data.properties",
+                        text: dataProperties,
+                        encoding: "UTF-8")
                     sh 'mvn clean test && chmod -R 777 ./allure-results'
                 }
             }
