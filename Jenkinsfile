@@ -11,7 +11,7 @@ pipeline {
           name: 'BASEURL')
         string(
           defaultValue: '20.10.0',
-          description: 'Select an agent version.',
+          description: 'Select a pod version.',
           name: 'PODVERSION')
         string(
           defaultValue: '2.62.2',
@@ -19,7 +19,7 @@ pipeline {
           name: 'AGENTVERSION')
         choice(
           choices: ['ePod', 'MT'],
-          description: 'Select an architecture.',
+          description: 'Select an infrastructure.',
           name: 'ENVIRONMENT')
         choice(
           choices: ['All', 'Attachment', 'Datafeed', 'Firehose', 'Healthcheck', 'Messaging', 'Registration', 'Signals'],
