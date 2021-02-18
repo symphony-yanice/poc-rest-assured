@@ -1,20 +1,25 @@
 package com.symphony.qa.integration.agent.basics;
 
 import com.symphony.qa.integration.BaseTest;
-import cucumber.api.CucumberOptions;
-import cucumber.api.junit.Cucumber;
 import io.qameta.allure.*;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.parallel.Execution;
 import org.junit.jupiter.api.parallel.ExecutionMode;
-import org.junit.runner.RunWith;
 
 @Epic("Agent")
 @Feature("Basics")
 @Story("Health Checks")
 @Execution(ExecutionMode.CONCURRENT)
-@RunWith(Cucumber.class)
-@CucumberOptions(features = {"src/test/resources/features/agent/"})
 public class BasicCucumberTest extends BaseTest {
 
+    @Test
+    @DisplayName("test Health V2")
+    public void testCucumber1() throws Throwable {
+        BasicCucumberSteps basicCucumberSteps = new BasicCucumberSteps();
+        basicCucumberSteps.firstDigit(5);
+        basicCucumberSteps.secondDigit(5);
+        basicCucumberSteps.check(10, basicCucumberSteps.add(5,5));
+    }
 
 }

@@ -27,13 +27,13 @@ public class BasicCucumberSteps {
     }
 
     @When("^I multiply it$")
-    public void multiply() throws Throwable {
-        sum = a + b + c;
+    public int add(int a, int b) throws Throwable {
+        return a + b;
     }
 
     @Then("^sum is (\\d+)$")
-    public void sum(int result) throws Throwable {
-        Assert.assertEquals(result, sum);
+    public void check(int result, int expected) throws Throwable {
+        Assert.assertEquals(result, expected);
     }
 
 }
