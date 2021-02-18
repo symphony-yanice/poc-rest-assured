@@ -31,8 +31,8 @@ public class MultipleBasicTest extends BaseTest {
         JsonDataHelper.assertTrue("podConnectivity", getResponse.getBody().path("podConnectivity"));
         JsonDataHelper.assertTrue("keyManagerConnectivity", getResponse.getBody().path("keyManagerConnectivity"));
         JsonDataHelper.assertTrue("encryptDecryptSuccess", getResponse.getBody().path("encryptDecryptSuccess"));
-        JsonDataHelper.assertEquals("podVersion", getResponse.getBody().path("podVersion"), this.config.getProperty("pod.version"));
-        JsonDataHelper.assertEquals("agentVersion", getResponse.getBody().path("agentVersion"), this.config.getProperty("agent.version"));
+        JsonDataHelper.assertEquals("podVersion", getResponse.getBody().path("podVersion"), System.getenv("AUTOMATED_POD_VERSION"));
+        JsonDataHelper.assertEquals("agentVersion", getResponse.getBody().path("agentVersion"), System.getenv("AUTOMATED_AGENT_VERSION"));
         JsonDataHelper.assertTrue("agentServiceUser", getResponse.getBody().path("agentServiceUser"));
         JsonDataHelper.assertTrue("ceServiceUser", getResponse.getBody().path("ceServiceUser"));
     }
@@ -49,8 +49,8 @@ public class MultipleBasicTest extends BaseTest {
         JsonDataHelper.assertTrue("podConnectivity", getResponse.getBody().path("podConnectivity"));
         JsonDataHelper.assertTrue("keyManagerConnectivity", getResponse.getBody().path("keyManagerConnectivity"));
         JsonDataHelper.assertTrue("encryptDecryptSuccess", getResponse.getBody().path("encryptDecryptSuccess"));
-        JsonDataHelper.assertEquals("podVersion", getResponse.getBody().path("podVersion"), this.config.getProperty("pod.version"));
-        JsonDataHelper.assertEquals("agentVersion", getResponse.getBody().path("agentVersion"), this.config.getProperty("agent.version"));
+        JsonDataHelper.assertEquals("podVersion", getResponse.getBody().path("podVersion"), System.getenv("AUTOMATED_POD_VERSION"));
+        JsonDataHelper.assertEquals("agentVersion", getResponse.getBody().path("agentVersion"), System.getenv("AUTOMATED_AGENT_VERSION"));
         JsonDataHelper.assertTrue("agentServiceUser", getResponse.getBody().path("agentServiceUser"));
         JsonDataHelper.assertTrue("ceServiceUser", getResponse.getBody().path("ceServiceUser"));
     }
@@ -67,8 +67,8 @@ public class MultipleBasicTest extends BaseTest {
         JsonDataHelper.assertTrue("podConnectivity", getResponse.getBody().path("podConnectivity"));
         JsonDataHelper.assertTrue("keyManagerConnectivity", getResponse.getBody().path("keyManagerConnectivity"));
         JsonDataHelper.assertTrue("encryptDecryptSuccess", getResponse.getBody().path("encryptDecryptSuccess"));
-        JsonDataHelper.assertEquals("podVersion", getResponse.getBody().path("podVersion"), this.config.getProperty("pod.version"));
-        JsonDataHelper.assertEquals("agentVersion", getResponse.getBody().path("agentVersion"), this.config.getProperty("agent.version"));
+        JsonDataHelper.assertEquals("podVersion", getResponse.getBody().path("podVersion"), System.getenv("AUTOMATED_POD_VERSION"));
+        JsonDataHelper.assertEquals("agentVersion", getResponse.getBody().path("agentVersion"), System.getenv("AUTOMATED_AGENT_VERSION"));
         JsonDataHelper.assertTrue("agentServiceUser", getResponse.getBody().path("agentServiceUser"));
         JsonDataHelper.assertTrue("ceServiceUser", getResponse.getBody().path("ceServiceUser"));
     }
@@ -85,8 +85,8 @@ public class MultipleBasicTest extends BaseTest {
         JsonDataHelper.assertTrue("podConnectivity", getResponse.getBody().path("podConnectivity"));
         JsonDataHelper.assertTrue("keyManagerConnectivity", getResponse.getBody().path("keyManagerConnectivity"));
         JsonDataHelper.assertTrue("encryptDecryptSuccess", getResponse.getBody().path("encryptDecryptSuccess"));
-        JsonDataHelper.assertEquals("podVersion", getResponse.getBody().path("podVersion"), this.config.getProperty("pod.version"));
-        JsonDataHelper.assertEquals("agentVersion", getResponse.getBody().path("agentVersion"), this.config.getProperty("agent.version"));
+        JsonDataHelper.assertEquals("podVersion", getResponse.getBody().path("podVersion"), System.getenv("AUTOMATED_POD_VERSION"));
+        JsonDataHelper.assertEquals("agentVersion", getResponse.getBody().path("agentVersion"), System.getenv("AUTOMATED_AGENT_VERSION"));
         JsonDataHelper.assertTrue("agentServiceUser", getResponse.getBody().path("agentServiceUser"));
         JsonDataHelper.assertTrue("ceServiceUser", getResponse.getBody().path("ceServiceUser"));
     }
@@ -103,8 +103,8 @@ public class MultipleBasicTest extends BaseTest {
         JsonDataHelper.assertTrue("podConnectivity", getResponse.getBody().path("podConnectivity"));
         JsonDataHelper.assertTrue("keyManagerConnectivity", getResponse.getBody().path("keyManagerConnectivity"));
         JsonDataHelper.assertTrue("encryptDecryptSuccess", getResponse.getBody().path("encryptDecryptSuccess"));
-        JsonDataHelper.assertEquals("podVersion", getResponse.getBody().path("podVersion"), this.config.getProperty("pod.version"));
-        JsonDataHelper.assertEquals("agentVersion", getResponse.getBody().path("agentVersion"), this.config.getProperty("agent.version"));
+        JsonDataHelper.assertEquals("podVersion", getResponse.getBody().path("podVersion"), System.getenv("AUTOMATED_POD_VERSION"));
+        JsonDataHelper.assertEquals("agentVersion", getResponse.getBody().path("agentVersion"), System.getenv("AUTOMATED_AGENT_VERSION"));
         JsonDataHelper.assertTrue("agentServiceUser", getResponse.getBody().path("agentServiceUser"));
         JsonDataHelper.assertTrue("ceServiceUser", getResponse.getBody().path("ceServiceUser"));
     }
@@ -121,8 +121,8 @@ public class MultipleBasicTest extends BaseTest {
         JsonDataHelper.assertTrue("podConnectivity", getResponse.getBody().path("podConnectivity"));
         JsonDataHelper.assertTrue("keyManagerConnectivity", getResponse.getBody().path("keyManagerConnectivity"));
         JsonDataHelper.assertTrue("encryptDecryptSuccess", getResponse.getBody().path("encryptDecryptSuccess"));
-        JsonDataHelper.assertEquals("podVersion", getResponse.getBody().path("podVersion"), this.config.getProperty("pod.version"));
-        JsonDataHelper.assertEquals("agentVersion", getResponse.getBody().path("agentVersion"), this.config.getProperty("agent.version"));
+        JsonDataHelper.assertEquals("podVersion", getResponse.getBody().path("podVersion"), System.getenv("AUTOMATED_POD_VERSION"));
+        JsonDataHelper.assertEquals("agentVersion", getResponse.getBody().path("agentVersion"), System.getenv("AUTOMATED_AGENT_VERSION"));
         JsonDataHelper.assertTrue("agentServiceUser", getResponse.getBody().path("agentServiceUser"));
         JsonDataHelper.assertTrue("ceServiceUser", getResponse.getBody().path("ceServiceUser"));
     }
@@ -139,8 +139,8 @@ public class MultipleBasicTest extends BaseTest {
         JsonDataHelper.assertTrue("podConnectivity", getResponse.getBody().path("podConnectivity"));
         JsonDataHelper.assertTrue("keyManagerConnectivity", getResponse.getBody().path("keyManagerConnectivity"));
         JsonDataHelper.assertTrue("encryptDecryptSuccess", getResponse.getBody().path("encryptDecryptSuccess"));
-        JsonDataHelper.assertEquals("podVersion", getResponse.getBody().path("podVersion"), this.config.getProperty("pod.version"));
-        JsonDataHelper.assertEquals("agentVersion", getResponse.getBody().path("agentVersion"), this.config.getProperty("agent.version"));
+        JsonDataHelper.assertEquals("podVersion", getResponse.getBody().path("podVersion"), System.getenv("AUTOMATED_POD_VERSION"));
+        JsonDataHelper.assertEquals("agentVersion", getResponse.getBody().path("agentVersion"), System.getenv("AUTOMATED_AGENT_VERSION"));
         JsonDataHelper.assertTrue("agentServiceUser", getResponse.getBody().path("agentServiceUser"));
         JsonDataHelper.assertTrue("ceServiceUser", getResponse.getBody().path("ceServiceUser"));
     }
@@ -157,8 +157,8 @@ public class MultipleBasicTest extends BaseTest {
         JsonDataHelper.assertTrue("podConnectivity", getResponse.getBody().path("podConnectivity"));
         JsonDataHelper.assertTrue("keyManagerConnectivity", getResponse.getBody().path("keyManagerConnectivity"));
         JsonDataHelper.assertTrue("encryptDecryptSuccess", getResponse.getBody().path("encryptDecryptSuccess"));
-        JsonDataHelper.assertEquals("podVersion", getResponse.getBody().path("podVersion"), this.config.getProperty("pod.version"));
-        JsonDataHelper.assertEquals("agentVersion", getResponse.getBody().path("agentVersion"), this.config.getProperty("agent.version"));
+        JsonDataHelper.assertEquals("podVersion", getResponse.getBody().path("podVersion"), System.getenv("AUTOMATED_POD_VERSION"));
+        JsonDataHelper.assertEquals("agentVersion", getResponse.getBody().path("agentVersion"), System.getenv("AUTOMATED_AGENT_VERSION"));
         JsonDataHelper.assertTrue("agentServiceUser", getResponse.getBody().path("agentServiceUser"));
         JsonDataHelper.assertTrue("ceServiceUser", getResponse.getBody().path("ceServiceUser"));
     }
@@ -175,8 +175,8 @@ public class MultipleBasicTest extends BaseTest {
         JsonDataHelper.assertTrue("podConnectivity", getResponse.getBody().path("podConnectivity"));
         JsonDataHelper.assertTrue("keyManagerConnectivity", getResponse.getBody().path("keyManagerConnectivity"));
         JsonDataHelper.assertTrue("encryptDecryptSuccess", getResponse.getBody().path("encryptDecryptSuccess"));
-        JsonDataHelper.assertEquals("podVersion", getResponse.getBody().path("podVersion"), this.config.getProperty("pod.version"));
-        JsonDataHelper.assertEquals("agentVersion", getResponse.getBody().path("agentVersion"), this.config.getProperty("agent.version"));
+        JsonDataHelper.assertEquals("podVersion", getResponse.getBody().path("podVersion"), System.getenv("AUTOMATED_POD_VERSION"));
+        JsonDataHelper.assertEquals("agentVersion", getResponse.getBody().path("agentVersion"), System.getenv("AUTOMATED_AGENT_VERSION"));
         JsonDataHelper.assertTrue("agentServiceUser", getResponse.getBody().path("agentServiceUser"));
         JsonDataHelper.assertTrue("ceServiceUser", getResponse.getBody().path("ceServiceUser"));
     }
@@ -193,8 +193,8 @@ public class MultipleBasicTest extends BaseTest {
         JsonDataHelper.assertTrue("podConnectivity", getResponse.getBody().path("podConnectivity"));
         JsonDataHelper.assertTrue("keyManagerConnectivity", getResponse.getBody().path("keyManagerConnectivity"));
         JsonDataHelper.assertTrue("encryptDecryptSuccess", getResponse.getBody().path("encryptDecryptSuccess"));
-        JsonDataHelper.assertEquals("podVersion", getResponse.getBody().path("podVersion"), this.config.getProperty("pod.version"));
-        JsonDataHelper.assertEquals("agentVersion", getResponse.getBody().path("agentVersion"), this.config.getProperty("agent.version"));
+        JsonDataHelper.assertEquals("podVersion", getResponse.getBody().path("podVersion"), System.getenv("AUTOMATED_POD_VERSION"));
+        JsonDataHelper.assertEquals("agentVersion", getResponse.getBody().path("agentVersion"), System.getenv("AUTOMATED_AGENT_VERSION"));
         JsonDataHelper.assertTrue("agentServiceUser", getResponse.getBody().path("agentServiceUser"));
         JsonDataHelper.assertTrue("ceServiceUser", getResponse.getBody().path("ceServiceUser"));
     }

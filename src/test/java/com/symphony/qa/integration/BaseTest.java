@@ -11,7 +11,7 @@ import io.restassured.filter.log.ErrorLoggingFilter;
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.BeforeEach;
 
-import java.io.IOException;
+//import java.io.IOException;
 
 import static com.symphony.api.client.GsonObjectMapper.gson;
 import static io.restassured.config.ObjectMapperConfig.objectMapperConfig;
@@ -26,13 +26,13 @@ public class BaseTest {
     protected DatafeedApi datafeedApi;
 
     @BeforeEach
-    public void setup() throws IOException {
+    public void setup() {
         this.config = new Config();
         this.systemApi = ApiClient.api(ApiClient.Config.apiConfig().reqSpecSupplier(
                 () -> new RequestSpecBuilder()
                         .setConfig(config().objectMapperConfig(objectMapperConfig().defaultObjectMapper(gson())))
                         .addFilter(new ErrorLoggingFilter())
-                        .setBaseUri(this.config.getProperty("api.agent.baseurl"))
+                        .setBaseUri(System.getenv("AUTOMATED_AGENT_BASEURL"))
                         .setContentType(ContentType.JSON)
                         .setRelaxedHTTPSValidation()
         )).system();
@@ -40,7 +40,7 @@ public class BaseTest {
                 () -> new RequestSpecBuilder()
                         .setConfig(config().objectMapperConfig(objectMapperConfig().defaultObjectMapper(gson())))
                         .addFilter(new ErrorLoggingFilter())
-                        .setBaseUri(this.config.getProperty("api.agent.baseurl"))
+                        .setBaseUri(System.getenv("AUTOMATED_AGENT_BASEURL"))
                         .setContentType(ContentType.JSON)
                         .setRelaxedHTTPSValidation()
         )).signals();
@@ -48,7 +48,7 @@ public class BaseTest {
                 () -> new RequestSpecBuilder()
                         .setConfig(config().objectMapperConfig(objectMapperConfig().defaultObjectMapper(gson())))
                         .addFilter(new ErrorLoggingFilter())
-                        .setBaseUri(this.config.getProperty("api.agent.baseurl"))
+                        .setBaseUri(System.getenv("AUTOMATED_AGENT_BASEURL"))
                         .setContentType(ContentType.JSON)
                         .setRelaxedHTTPSValidation()
         )).messages();
@@ -56,7 +56,7 @@ public class BaseTest {
                 () -> new RequestSpecBuilder()
                         .setConfig(config().objectMapperConfig(objectMapperConfig().defaultObjectMapper(gson())))
                         .addFilter(new ErrorLoggingFilter())
-                        .setBaseUri(this.config.getProperty("api.agent.baseurl"))
+                        .setBaseUri(System.getenv("AUTOMATED_AGENT_BASEURL"))
                         .setContentType(ContentType.JSON)
                         .setRelaxedHTTPSValidation()
         )).datafeed();
