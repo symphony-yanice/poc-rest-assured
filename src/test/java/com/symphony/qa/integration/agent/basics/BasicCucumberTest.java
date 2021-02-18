@@ -18,8 +18,7 @@ public class BasicCucumberTest extends BaseTest {
     public void testCucumber1() throws Throwable {
         BasicCucumberSteps basicCucumberSteps = new BasicCucumberSteps();
         basicCucumberSteps.firstDigit(5);
-        basicCucumberSteps.secondDigit(5);
-        basicCucumberSteps.check(10, basicCucumberSteps.add(5,5));
+        basicCucumberSteps.check(10, 5+5);
     }
 
 }
