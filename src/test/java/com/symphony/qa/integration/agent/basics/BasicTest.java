@@ -1,6 +1,7 @@
 package com.symphony.qa.integration.agent.basics;
 
 import com.symphony.qa.integration.agent.basics.steps.BasicSteps;
+import cucumber.api.CucumberOptions;
 import io.qameta.allure.*;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.DisplayName;
@@ -12,6 +13,9 @@ import org.junit.jupiter.api.parallel.ExecutionMode;
 @Feature("Basics")
 @Story("Health Checks")
 @Execution(ExecutionMode.CONCURRENT)
+@CucumberOptions(
+        features = {"src/test/resources/features/agent"}
+)
 public class BasicTest {
 
     @Test
