@@ -17,8 +17,9 @@ import static io.restassured.config.ObjectMapperConfig.objectMapperConfig;
 import static io.restassured.config.RestAssuredConfig.config;
 
 public class BasicSteps {
-    @Given("that I retrieve a {} from the health check endpoint")
-    public Response thatIRetrieveAResponseFromTheHealthEndpoint() {
+
+    @Given("that I retrieve a {int} response from the v2 health check endpoint")
+    public void thatIRetrieveAResponseFromTheV2HealthCheckEndpoint(int statusCode) {
         SystemApi systemApi = ApiClient.api(ApiClient.Config.apiConfig().reqSpecSupplier(
                 () -> new RequestSpecBuilder()
                         .setConfig(config().objectMapperConfig(objectMapperConfig().defaultObjectMapper(gson())))
@@ -27,22 +28,16 @@ public class BasicSteps {
                         .setContentType(ContentType.JSON)
                         .setRelaxedHTTPSValidation()
         )).system();
-        return systemApi.v2HealthCheckGet().execute(r -> r);
-    }
-
-    @When("I receive a {int} status code from a {}")
-    public void iReceiveAStatusCodeFromA(Response response, int statusCode) {
+        Response response = systemApi.v2HealthCheckGet().execute(r -> r);
         HttpResponseHelper.assertStatusCode(response, statusCode);
-    }
-
-    @Then("all the V2 Health Check fields are present")
-    public void allTheVHealthCheckFieldsArePresent(Response response) {
-        JsonDataHelper.assertTrue("podConnectivity", response.getBody().path("podConnectivity"));
-        JsonDataHelper.assertTrue("keyManagerConnectivity", response.getBody().path("keyManagerConnectivity"));
-        JsonDataHelper.assertTrue("encryptDecryptSuccess", response.getBody().path("encryptDecryptSuccess"));
-        JsonDataHelper.assertEquals("podVersion", response.getBody().path("podVersion"), System.getenv("AUTOMATED_POD_VERSION"));
-        JsonDataHelper.assertEquals("agentVersion", response.getBody().path("agentVersion"), System.getenv("AUTOMATED_AGENT_VERSION"));
-        JsonDataHelper.assertTrue("agentServiceUser", response.getBody().path("agentServiceUser"));
-        JsonDataHelper.assertTrue("ceServiceUser", response.getBody().path("ceServiceUser"));
+        if (statusCode == 200) {
+            JsonDataHelper.assertTrue("podConnectivity", response.getBody().path("podConnectivity"));
+            JsonDataHelper.assertTrue("keyManagerConnectivity", response.getBody().path("keyManagerConnectivity"));
+            JsonDataHelper.assertTrue("encryptDecryptSuccess", response.getBody().path("encryptDecryptSuccess"));
+            JsonDataHelper.assertEquals("podVersion", response.getBody().path("podVersion"), System.getenv("AUTOMATED_POD_VERSION"));
+            JsonDataHelper.assertEquals("agentVersion", response.getBody().path("agentVersion"), System.getenv("AUTOMATED_AGENT_VERSION"));
+            JsonDataHelper.assertTrue("agentServiceUser", response.getBody().path("agentServiceUser"));
+            JsonDataHelper.assertTrue("ceServiceUser", response.getBody().path("ceServiceUser"));
+        }
     }
 }

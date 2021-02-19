@@ -1,14 +1,11 @@
 package com.symphony.qa.integration.agent.basics;
 
-import com.symphony.qa.helpers.HttpResponseHelper;
-import com.symphony.qa.helpers.JsonDataHelper;
 import com.symphony.qa.integration.BaseTest;
 import com.symphony.qa.integration.agent.basics.steps.BasicSteps;
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
-import io.restassured.response.Response;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.parallel.Execution;
@@ -28,9 +25,7 @@ public class MultipleBasicTest extends BaseTest {
             "*Then* I expect to have a successful answer<br/>")
     public void testHealth() {
         BasicSteps basicSteps = new BasicSteps();
-        Response getHealthCheck = basicSteps.thatIRetrieveAResponseFromTheHealthEndpoint();
-        basicSteps.iReceiveAStatusCodeFromA(getHealthCheck, 200);
-        basicSteps.allTheVHealthCheckFieldsArePresent(getHealthCheck);
+        basicSteps.thatIRetrieveAResponseFromTheV2HealthCheckEndpoint(200);
     }
 
     @Test
@@ -41,9 +36,7 @@ public class MultipleBasicTest extends BaseTest {
             "*Then* I expect to have a successful answer<br/>")
     public void testHealth2() {
         BasicSteps basicSteps = new BasicSteps();
-        Response getHealthCheck = basicSteps.thatIRetrieveAResponseFromTheHealthEndpoint();
-        basicSteps.iReceiveAStatusCodeFromA(getHealthCheck, 200);
-        basicSteps.allTheVHealthCheckFieldsArePresent(getHealthCheck);
+        basicSteps.thatIRetrieveAResponseFromTheV2HealthCheckEndpoint(200);
     }
 
     @Test
@@ -54,9 +47,7 @@ public class MultipleBasicTest extends BaseTest {
             "*Then* I expect to have a successful answer<br/>")
     public void testHealth3() {
         BasicSteps basicSteps = new BasicSteps();
-        Response getHealthCheck = basicSteps.thatIRetrieveAResponseFromTheHealthEndpoint();
-        basicSteps.iReceiveAStatusCodeFromA(getHealthCheck, 200);
-        basicSteps.allTheVHealthCheckFieldsArePresent(getHealthCheck);
+        basicSteps.thatIRetrieveAResponseFromTheV2HealthCheckEndpoint(200);
     }
 
     @Test
@@ -67,9 +58,7 @@ public class MultipleBasicTest extends BaseTest {
             "*Then* I expect to have a successful answer<br/>")
     public void testHealth4() {
         BasicSteps basicSteps = new BasicSteps();
-        Response getHealthCheck = basicSteps.thatIRetrieveAResponseFromTheHealthEndpoint();
-        basicSteps.iReceiveAStatusCodeFromA(getHealthCheck, 200);
-        basicSteps.allTheVHealthCheckFieldsArePresent(getHealthCheck);
+        basicSteps.thatIRetrieveAResponseFromTheV2HealthCheckEndpoint(200);
     }
 
     @Test
@@ -80,9 +69,7 @@ public class MultipleBasicTest extends BaseTest {
             "*Then* I expect to have a successful answer<br/>")
     public void testHealth5() {
         BasicSteps basicSteps = new BasicSteps();
-        Response getHealthCheck = basicSteps.thatIRetrieveAResponseFromTheHealthEndpoint();
-        basicSteps.iReceiveAStatusCodeFromA(getHealthCheck, 200);
-        basicSteps.allTheVHealthCheckFieldsArePresent(getHealthCheck);
+        basicSteps.thatIRetrieveAResponseFromTheV2HealthCheckEndpoint(200);
     }
 
     @Test
@@ -93,9 +80,7 @@ public class MultipleBasicTest extends BaseTest {
             "*Then* I expect to have a successful answer<br/>")
     public void testHealth6() {
         BasicSteps basicSteps = new BasicSteps();
-        Response getHealthCheck = basicSteps.thatIRetrieveAResponseFromTheHealthEndpoint();
-        basicSteps.iReceiveAStatusCodeFromA(getHealthCheck, 200);
-        basicSteps.allTheVHealthCheckFieldsArePresent(getHealthCheck);
+        basicSteps.thatIRetrieveAResponseFromTheV2HealthCheckEndpoint(200);
     }
 
     @Test
@@ -106,9 +91,7 @@ public class MultipleBasicTest extends BaseTest {
             "*Then* I expect to have a successful answer<br/>")
     public void testHealth7() {
         BasicSteps basicSteps = new BasicSteps();
-        Response getHealthCheck = basicSteps.thatIRetrieveAResponseFromTheHealthEndpoint();
-        basicSteps.iReceiveAStatusCodeFromA(getHealthCheck, 200);
-        basicSteps.allTheVHealthCheckFieldsArePresent(getHealthCheck);
+        basicSteps.thatIRetrieveAResponseFromTheV2HealthCheckEndpoint(200);
     }
 
     @Test
@@ -119,9 +102,7 @@ public class MultipleBasicTest extends BaseTest {
             "*Then* I expect to have a successful answer<br/>")
     public void testHealth8() {
         BasicSteps basicSteps = new BasicSteps();
-        Response getHealthCheck = basicSteps.thatIRetrieveAResponseFromTheHealthEndpoint();
-        basicSteps.iReceiveAStatusCodeFromA(getHealthCheck, 200);
-        basicSteps.allTheVHealthCheckFieldsArePresent(getHealthCheck);
+        basicSteps.thatIRetrieveAResponseFromTheV2HealthCheckEndpoint(200);
     }
 
     @Test
@@ -132,9 +113,7 @@ public class MultipleBasicTest extends BaseTest {
             "*Then* I expect to have a successful answer<br/>")
     public void testHealth9() {
         BasicSteps basicSteps = new BasicSteps();
-        Response getHealthCheck = basicSteps.thatIRetrieveAResponseFromTheHealthEndpoint();
-        basicSteps.iReceiveAStatusCodeFromA(getHealthCheck, 200);
-        basicSteps.allTheVHealthCheckFieldsArePresent(getHealthCheck);
+        basicSteps.thatIRetrieveAResponseFromTheV2HealthCheckEndpoint(200);
     }
 
     @Test
@@ -145,9 +124,7 @@ public class MultipleBasicTest extends BaseTest {
             "*Then* I expect to have a successful answer<br/>")
     public void testHealth10() {
         BasicSteps basicSteps = new BasicSteps();
-        Response getHealthCheck = basicSteps.thatIRetrieveAResponseFromTheHealthEndpoint();
-        basicSteps.iReceiveAStatusCodeFromA(getHealthCheck, 200);
-        basicSteps.allTheVHealthCheckFieldsArePresent(getHealthCheck);
+        basicSteps.thatIRetrieveAResponseFromTheV2HealthCheckEndpoint(200);
     }
 
 }

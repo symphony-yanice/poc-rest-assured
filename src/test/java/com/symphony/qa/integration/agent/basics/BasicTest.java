@@ -4,7 +4,6 @@ import com.symphony.qa.integration.agent.basics.steps.BasicSteps;
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
 import io.qameta.allure.*;
-import io.restassured.response.Response;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.parallel.Execution;
@@ -27,9 +26,7 @@ public class BasicTest {
     @Issue("PLAT-10399")
     public void testHealthV2() {
         BasicSteps basicSteps = new BasicSteps();
-        Response getHealthCheck = basicSteps.thatIRetrieveAResponseFromTheHealthEndpoint();
-        basicSteps.iReceiveAStatusCodeFromA(getHealthCheck, 200);
-        basicSteps.allTheVHealthCheckFieldsArePresent(getHealthCheck);
+        basicSteps.thatIRetrieveAResponseFromTheV2HealthCheckEndpoint(200);
     }
 
 }
