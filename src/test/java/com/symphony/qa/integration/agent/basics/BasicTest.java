@@ -1,7 +1,7 @@
 package com.symphony.qa.integration.agent.basics;
 
 import com.symphony.qa.integration.agent.basics.steps.BasicSteps;
-import cucumber.api.CucumberOptions;
+import io.cucumber.junit.CucumberOptions;
 import io.qameta.allure.*;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.DisplayName;
