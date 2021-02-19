@@ -19,14 +19,14 @@ import org.junit.runner.RunWith;
         features = {"src/test/resources/features/agent"}
 )
 public class BasicTest {
-
-    @Test
-    @DisplayName("test Health V2")
-    @Description("This scenario is an example of Allure capabilities with cucumber")
-    @Issue("PLAT-10399")
-    public void testHealthV2() {
-        BasicSteps basicSteps = new BasicSteps();
-        basicSteps.thatIRetrieveAResponseFromTheV2HealthCheckEndpoint(200);
-    }
+//
+//    @Test
+//    @DisplayName("test Health V2")
+//    @Description("This scenario is an example of Allure capabilities with cucumber")
+//    @Issue("PLAT-10399")
+//    public void testHealthV2() {
+//        BasicSteps basicSteps = new BasicSteps();
+//        basicSteps.IRetrieveAResponseFromTheV2HealthCheckEndpoint(200);
+//    }
 
 }
