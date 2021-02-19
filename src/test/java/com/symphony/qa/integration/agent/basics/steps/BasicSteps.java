@@ -19,8 +19,6 @@ import static io.restassured.config.RestAssuredConfig.config;
 public class BasicSteps {
 
     @Given("I retrieve a {int} response from the v2 health check endpoint")
-    @When("I retrieve a {int} response from the v2 health check endpoint")
-    @Then("I retrieve a {int} response from the v2 health check endpoint")
     public void IRetrieveAResponseFromTheV2HealthCheckEndpoint(int statusCode) {
         SystemApi systemApi = ApiClient.api(ApiClient.Config.apiConfig().reqSpecSupplier(
                 () -> new RequestSpecBuilder()
