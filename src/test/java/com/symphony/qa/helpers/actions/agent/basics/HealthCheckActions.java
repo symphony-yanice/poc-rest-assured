@@ -16,7 +16,7 @@ import static io.restassured.config.RestAssuredConfig.config;
 
 public class HealthCheckActions {
 
-    @Step("I retrieve the v2 health check endpoint")
+    @Step("When I retrieve the v2 health check endpoint")
     public Response IRetrieveV2HealthCheckEndpoint() {
         SystemApi systemApi = ApiClient.api(ApiClient.Config.apiConfig().reqSpecSupplier(
                 () -> new RequestSpecBuilder()
@@ -29,7 +29,7 @@ public class HealthCheckActions {
         return systemApi.v2HealthCheckGet().execute(r -> r);
     }
 
-    @Step("I assert the HealthCheck successful fields")
+    @Step("Then I assert the HealthCheck successful fields")
     public void IAssertAllV2HealthCheckSuccessfulFields(Response response){
         HttpResponseHelper.assertStatusCode(response, 200);
         JsonDataHelper.assertTrue("podConnectivity", response.getBody().path("podConnectivity"));

@@ -14,6 +14,6 @@ import org.junit.jupiter.api.parallel.ExecutionMode;
 //@CucumberOptions(
 //        features = {"src/test/resources/features/agent"}
 //)
-public class MultipleBasicTest {
+public class MultipleTest {
 
 }

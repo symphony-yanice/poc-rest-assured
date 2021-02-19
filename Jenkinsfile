@@ -8,44 +8,35 @@ pipeline {
         string(
           defaultValue: 'https://develop2.symphony.com/agent',
           description: 'Select a base URL.',
-          name: 'BASEURL')
+          name: 'AUTOMATED_AGENT_BASEURL')
         string(
           defaultValue: '20.10.0',
           description: 'Select a pod version.',
-          name: 'PODVERSION')
+          name: 'AUTOMATED_POD_VERSION')
         string(
           defaultValue: '2.62.2',
           description: 'Select an agent version.',
-          name: 'AGENTVERSION')
+          name: 'AUTOMATED_AGENT_VERSION')
         choice(
           choices: ['ePod', 'MT'],
           description: 'Select an infrastructure.',
-          name: 'ENVIRONMENT')
+          name: 'AUTOMATED_AGENT_ENV')
         choice(
           choices: ['All', 'Attachment', 'Datafeed', 'Firehose', 'Healthcheck', 'Messaging', 'Registration', 'Signals'],
           description: 'Select a test suite.',
-          name: 'SUITE')
+          name: 'AUTOMATED_AGENT_SUITE')
     }
     environment {
-        AUTOMATED_AGENT_BASEURL = "${params.BASEURL}"
-        AUTOMATED_POD_VERSION = "${params.PODVERSION}"
-        AUTOMATED_AGENT_VERSION = "${params.AGENTVERSION}"
-        AUTOMATED_AGENT_SUITE = "${params.SUITE}"
-        AUTOMATED_AGENT_ENV = "${params.ENVIRONMENT}"
+        AUTOMATED_AGENT_BASEURL = "${params.AUTOMATED_AGENT_BASEURL}"
+        AUTOMATED_POD_VERSION = "${params.AUTOMATED_POD_VERSION}"
+        AUTOMATED_AGENT_VERSION = "${params.AUTOMATED_AGENT_VERSION}"
+        AUTOMATED_AGENT_SUITE = "${params.AUTOMATED_AGENT_SUITE}"
+        AUTOMATED_AGENT_ENV = "${params.AUTOMATED_AGENT_ENV}"
     }
     stages {
         stage('Run the E2E Tests') {
             steps {
                 script {
-                    def apiProperties = "api.agent.baseurl=${env.AUTOMATED_AGENT_BASEURL}"
-                    def dataProperties = "pod.version=${env.AUTOMATED_POD_VERSION}"
-                    dataProperties += "\nagent.version=${env.AUTOMATED_AGENT_VERSION}"
-                    writeFile(file: "src/test/resources/configuration/environment/api.properties",
-                        text: apiProperties,
-                        encoding: "UTF-8")
-                    writeFile(file: "src/test/resources/configuration/environment/data.properties",
-                        text: dataProperties,
-                        encoding: "UTF-8")
                     sh 'mvn clean test && chmod -R 777 ./allure-results'
                 }
             }
