@@ -14,10 +14,10 @@ import org.junit.runner.RunWith;
 @Feature("Basics")
 @Story("Multiple Health Checks")
 @Execution(ExecutionMode.CONCURRENT)
-@RunWith(Cucumber.class)
-@CucumberOptions(
-        features = {"src/test/resources/features/agent"}
-)
+//@RunWith(Cucumber.class)
+//@CucumberOptions(
+//        features = {"src/test/resources/features/agent"}
+//)
 public class MultipleBasicTest extends BaseTest {
 
 }
