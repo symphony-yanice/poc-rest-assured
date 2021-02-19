@@ -13,7 +13,9 @@
         <allure.version>2.10.0</allure.version>
         <allure.junit.version>2.13.8</allure.junit.version>
         <rest-assured.version>4.3.3</rest-assured.version>
+        <cucumber.version>5.7.0</cucumber.version>
         <junit.version>5.7.0</junit.version>
+        <aspectjweaver.version>1.9.6</aspectjweaver.version>
         <!-- Utilities -->
         <groovy.version>3.0.2</groovy.version>
         <gson.version>2.8.6</gson.version>
@@ -41,13 +43,13 @@
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-java8</artifactId>
-            <version>4.8.1</version>
+            <version>${cucumber.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-cucumber4-jvm</artifactId>
-            <version>2.13.8</version>
+            <version>${allure.junit.version}</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-maven -->
         <dependency>
@@ -166,8 +168,8 @@
                     <reportsDirectory>${project.basedir}/target</reportsDirectory>
                     <testFailureIgnore>false</testFailureIgnore>
                     <argLine>
-                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/1.9.6/aspectjweaver-1.9.6.jar"
-                        -Dcucumber.options="--plugin ru.yandex.qatools.allure.cucumberjvm.AllureReporter"
+                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectjweaver.version}/aspectjweaver-${aspectjweaver.version}.jar"
+                        -Dcucumber.options="--plugin io.qameta.allure.cucumber4jvm.AllureCucumber4Jvm"
                     </argLine>
                     <systemProperties>
                         <property>
@@ -183,7 +185,7 @@
                 <dependency>
                     <groupId>org.aspectj</groupId>
                     <artifactId>aspectjweaver</artifactId>
-                    <version>1.9.6</version>
+                    <version>${aspectjweaver.version}</version>
                     <scope>runtime</scope>
                 </dependency>
                 <dependency>
@@ -231,16 +233,4 @@
             </plugin>
         </plugins>
     </build>
-
-
-    <reporting>
-        <excludeDefaults>true</excludeDefaults>
-        <plugins>
-            <plugin>
-                <groupId>ru.yandex.qatools.allure</groupId>
-                <artifactId>allure-maven-plugin</artifactId>
-                <version>2.6</version>
-            </plugin>
-        </plugins>
-    </reporting>
 </project>
