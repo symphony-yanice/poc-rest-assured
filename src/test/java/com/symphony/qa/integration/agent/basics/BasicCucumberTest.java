@@ -1,6 +1,7 @@
 package com.symphony.qa.integration.agent.basics;
 
 import com.symphony.qa.integration.BaseTest;
+import com.symphony.qa.integration.agent.basics.steps.BasicCucumberSteps;
 import io.qameta.allure.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

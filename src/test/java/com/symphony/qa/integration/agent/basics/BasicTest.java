@@ -1,8 +1,6 @@
 package com.symphony.qa.integration.agent.basics;
 
-import com.symphony.qa.helpers.HttpResponseHelper;
-import com.symphony.qa.helpers.JsonDataHelper;
-import com.symphony.qa.integration.BaseTest;
+import com.symphony.qa.integration.agent.basics.steps.BasicSteps;
 import io.qameta.allure.*;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.DisplayName;
@@ -14,25 +12,17 @@ import org.junit.jupiter.api.parallel.ExecutionMode;
 @Feature("Basics")
 @Story("Health Checks")
 @Execution(ExecutionMode.CONCURRENT)
-public class BasicTest extends BaseTest {
+public class BasicTest {
 
     @Test
     @DisplayName("test Health V2")
-    @Description("**Scenario** : Example of a BDD Scenario<br/><br/>" +
-            "*Given* that I connect to the Agent API<br/>" +
-            "*When* I check the health of the endpoint<br/>" +
-            "*Then* I expect to have a successful answer<br/>")
+    @Description("This scenario is an example of Allure capabilities with cucumber")
     @Issue("PLAT-10399")
     public void testHealthV2() {
-        Response getResponse = this.systemApi.v2HealthCheckGet().execute(r -> r);
-        HttpResponseHelper.assertStatusCode(getResponse, 200);
-        JsonDataHelper.assertTrue("podConnectivity", getResponse.getBody().path("podConnectivity"));
-        JsonDataHelper.assertTrue("keyManagerConnectivity", getResponse.getBody().path("keyManagerConnectivity"));
-        JsonDataHelper.assertTrue("encryptDecryptSuccess", getResponse.getBody().path("encryptDecryptSuccess"));
-        JsonDataHelper.assertEquals("podVersion", getResponse.getBody().path("podVersion"), System.getenv("AUTOMATED_POD_VERSION"));
-        JsonDataHelper.assertEquals("agentVersion", getResponse.getBody().path("agentVersion"), System.getenv("AUTOMATED_AGENT_VERSION"));
-        JsonDataHelper.assertTrue("agentServiceUser", getResponse.getBody().path("agentServiceUser"));
-        JsonDataHelper.assertTrue("ceServiceUser", getResponse.getBody().path("ceServiceUser"));
+        BasicSteps basicSteps = new BasicSteps();
+        Response getHealthCheck = basicSteps.thatIRetrieveAResponseFromTheHealthEndpoint();
+        basicSteps.iReceiveAStatusCodeFromA(getHealthCheck, 200);
+        basicSteps.allTheVHealthCheckFieldsArePresent(getHealthCheck);
     }
 
 }

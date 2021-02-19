@@ -1,4 +1,3 @@
-@en
 Feature: Test allure English
 
   Scenario: Test multiply
