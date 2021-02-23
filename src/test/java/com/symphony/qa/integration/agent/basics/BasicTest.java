@@ -15,7 +15,7 @@ import org.junit.runner.RunWith;
 @Epic("Agent")
 @Feature("Basics")
 @Execution(ExecutionMode.CONCURRENT)
-//@RunWith(Cucumber.class)
+@RunWith(Cucumber.class)
 //@CucumberOptions(features = { "src/test/resources/features" })
 public class BasicTest {
 
