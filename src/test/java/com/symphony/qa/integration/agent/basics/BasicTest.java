@@ -16,7 +16,8 @@ public class BasicTest {
 
     @Test
     @DisplayName("test Health V2 with Actions (first)")
-    @Description("Given I retrieve a 200 response from the v2 health check endpoint")
+    @Description("*Given* I retrieve a 200 response from the v2 health check endpoint<br>" +
+            "*Then* all the mandatory successful fields are correctly displayed")
     public void testHealthV2First() {
         HealthCheckActions healthCheckActions = new HealthCheckActions();
         Response getHealthCheckResponse = healthCheckActions.IRetrieveV2HealthCheckEndpoint();
@@ -25,7 +26,8 @@ public class BasicTest {
 
     @Test
     @DisplayName("test Health V2 with Actions (second)")
-    @Description("Given I retrieve a 200 response from the v2 health check endpoint")
+    @Description("*Given* I retrieve a 200 response from the v2 health check endpoint<br>" +
+            "*Then* all the mandatory successful fields are correctly displayed")
     public void testHealthV2Second() {
         HealthCheckActions healthCheckActions = new HealthCheckActions();
         Response getHealthCheckResponse = healthCheckActions.IRetrieveV2HealthCheckEndpoint();
@@ -34,7 +36,8 @@ public class BasicTest {
 
     @Test
     @DisplayName("test Health V2 with Actions (third)")
-    @Description("Given I retrieve a 200 response from the v2 health check endpoint")
+    @Description("*Given* I retrieve a 200 response from the v2 health check endpoint<br>" +
+            "*Then* all the mandatory successful fields are correctly displayed")
     public void testHealthV2Third() {
         HealthCheckActions healthCheckActions = new HealthCheckActions();
         Response getHealthCheckResponse = healthCheckActions.IRetrieveV2HealthCheckEndpoint();
