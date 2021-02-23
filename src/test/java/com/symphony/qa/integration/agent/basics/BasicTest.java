@@ -16,18 +16,18 @@ import org.junit.runner.RunWith;
 @Feature("Basics")
 @Execution(ExecutionMode.CONCURRENT)
 @RunWith(Cucumber.class)
-//@CucumberOptions(features = { "src/test/resources/features" })
+@CucumberOptions(features = { "src/test/resources/features" })
 public class BasicTest {
 
-//    @Test
-//    @DisplayName("test Health V2")
-//    @Description("This scenario is an example of Actions capabilities")
-//    @Story("Health Checks")
-//    public void testHealthV2() {
-//        HealthCheckActions healthCheckActions = new HealthCheckActions();
-//        Response getHealthCheckResponse = healthCheckActions.IRetrieveV2HealthCheckEndpoint();
-//        healthCheckActions.IAssertAllV2HealthCheckSuccessfulFields(getHealthCheckResponse);
-//    }
+    @Test
+    @DisplayName("test Health V2 with Actions")
+    @Description("This scenario is an example of Actions capabilities")
+    @Story("Health Checks")
+    public void testHealthV2() {
+        HealthCheckActions healthCheckActions = new HealthCheckActions();
+        Response getHealthCheckResponse = healthCheckActions.IRetrieveV2HealthCheckEndpoint();
+        healthCheckActions.IAssertAllV2HealthCheckSuccessfulFields(getHealthCheckResponse);
+    }
 
     @Test
     @DisplayName("Test Health V2 (First)")
