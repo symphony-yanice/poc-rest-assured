@@ -15,7 +15,7 @@ import org.junit.runner.RunWith;
 @Feature("Basics")
 @Execution(ExecutionMode.CONCURRENT)
 @RunWith(Cucumber.class)
-@CucumberOptions(features = { "src/test/java/features" },
+@CucumberOptions(features = { "src/test/resources/features" },
         plugin = { "pretty", "html:target/cucumber-html-reports",
                 "json:target/cucumber-html-reports/cucumber.json",
                 "rerun:target/failed_scenarios.txt" },
