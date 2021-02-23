@@ -5,8 +5,6 @@ import com.symphony.api.client.ApiClient;
 import com.symphony.qa.helpers.HttpResponseHelper;
 import com.symphony.qa.helpers.JsonDataHelper;
 import io.cucumber.java.en.Given;
-import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.filter.log.ErrorLoggingFilter;
 import io.restassured.http.ContentType;
@@ -19,7 +17,7 @@ import static io.restassured.config.RestAssuredConfig.config;
 public class BasicSteps {
 
     @Given("I retrieve a {int} response from the v2 health check endpoint")
-    public void IRetrieveAResponseFromTheV2HealthCheckEndpoint(int statusCode) {
+    public Response IRetrieveAResponseFromTheV2HealthCheckEndpoint(int statusCode) {
         SystemApi systemApi = ApiClient.api(ApiClient.Config.apiConfig().reqSpecSupplier(
                 () -> new RequestSpecBuilder()
                         .setConfig(config().objectMapperConfig(objectMapperConfig().defaultObjectMapper(gson())))
@@ -39,5 +37,6 @@ public class BasicSteps {
             JsonDataHelper.assertTrue("agentServiceUser", response.getBody().path("agentServiceUser"));
             JsonDataHelper.assertTrue("ceServiceUser", response.getBody().path("ceServiceUser"));
         }
+        return response;
     }
 }
