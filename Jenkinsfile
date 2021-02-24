@@ -41,11 +41,17 @@ pipeline {
         stage('Run the E2E Tests') {
             steps {
                 script {
+                    sh 'mvn clean test && chmod -R 777 ./allure-results'
+                }
+            }
+        }
+        finally {
+            stage('Send results to XRay') {
+                dir(current_dir) {
                     withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'sym-aws-qa', accessKeyVariable: 'AWS_ACCESS_KEY_ID', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
                         env.xRayUser = sh(script: "AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID} AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY} aws ssm get-parameter --name /qa/xray/user --with-decryption --region us-east-1 --query Parameter.Value", returnStdout: true).trim()
                         env.xRayToken = sh(script: "AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID} AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY} aws ssm get-parameter --name /qa/xray/token --with-decryption --region us-east-1 --query Parameter.Value", returnStdout: true).trim()
                     }
-                    sh 'mvn clean test && chmod -R 777 ./allure-results'
                 }
             }
         }
