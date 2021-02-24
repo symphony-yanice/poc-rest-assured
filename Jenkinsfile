@@ -1,3 +1,7 @@
+@Library(['sym-pipeline@master'])
+
+import com.symphony.cicd.SymphonyCICDUtils
+
 pipeline {
     agent {
         docker {
@@ -45,16 +49,20 @@ pipeline {
     post {
         always {
             script {
+                withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'sym-aws-qa', accessKeyVariable: 'AWS_ACCESS_KEY_ID', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
+                    env.xRayUser = sh(script: "AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID} AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY} aws ssm get-parameter --name /qa/xray/user --with-decryption --region us-east-1 --query Parameter.Value", returnStdout: true).trim()
+                    env.xRayToken = sh(script: "AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID} AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY} aws ssm get-parameter --name /qa/xray/token --with-decryption --region us-east-1 --query Parameter.Value", returnStdout: true).trim()
+                }
                 def now = new Date()
                 TODAY = now.format("MMM dd, yyyy - hh:mm", TimeZone.getTimeZone('UTC'))
-                def properties = "AGENT_VERSION   =   ${env.AUTOMATED_AGENT_VERSION}"
-                properties += "\nPOD_VERSION    =   ${env.AUTOMATED_POD_VERSION}"
-                properties += "\nSUITE          =   ${env.AUTOMATED_AGENT_SUITE}"
-                properties += "\nINFRASTRUCTURE =   ${env.AUTOMATED_AGENT_ENV}"
-                properties += "\nDATE           =   ${TODAY}"
-                def jiraProperties = "ALLURE_JIRA_ENDPOINT=https://perzoinc.atlassian.net/rest"
-                jiraProperties += "\nALLURE_JIRA_USERNAME=" + sh(script: "AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID} AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY} aws ssm get-parameter --name /qa/xray/user --with-decryption --region us-east-1 --query Parameter.Value", returnStdout: true).trim()
-                jiraProperties += "\nALLURE_JIRA_PASSWORD=" + sh(script: "AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID} AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY} aws ssm get-parameter --name /qa/xray/token --with-decryption --region us-east-1 --query Parameter.Value", returnStdout: true).trim()
+                def properties = "AGENT_VERSION             =   ${env.AUTOMATED_AGENT_VERSION}"
+                properties += "\nPOD_VERSION                =   ${env.AUTOMATED_POD_VERSION}"
+                properties += "\nSUITE                      =   ${env.AUTOMATED_AGENT_SUITE}"
+                properties += "\nINFRASTRUCTURE             =   ${env.AUTOMATED_AGENT_ENV}"
+                properties += "\nDATE                       =   ${TODAY}"
+                def jiraProperties = "ALLURE_JIRA_ENDPOINT  =   https://perzoinc.atlassian.net/rest"
+                jiraProperties += "\nALLURE_JIRA_USERNAME   =   ${env.xRayUser}"
+                jiraProperties += "\nALLURE_JIRA_PASSWORD   =   ${env.xRayToken}"
                 jiraProperties += "\nALLURE_XRAY_ENABLED=true"
                 writeFile(file: "allure-results/environment.properties", text: properties, encoding: "UTF-8")
                 writeFile(file: "allure-results/jira.properties", text: jiraProperties, encoding: "UTF-8")
