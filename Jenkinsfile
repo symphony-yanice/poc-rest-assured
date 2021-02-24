@@ -10,6 +10,14 @@ pipeline {
     }
     parameters {
         string(
+          defaultValue: 'yanice.cherrak',
+          description: 'Select your Jira username.',
+          name: 'ALLURE_JIRA_USERNAME')
+        password(
+          defaultValue: 'secret',
+          description: 'Enter Password',
+          name: 'ALLURE_JIRA_PASSWORD')
+        string(
           defaultValue: 'https://develop2.symphony.com/agent',
           description: 'Select a base URL.',
           name: 'AUTOMATED_AGENT_BASEURL')
@@ -36,22 +44,14 @@ pipeline {
         AUTOMATED_AGENT_VERSION = "${params.AUTOMATED_AGENT_VERSION}"
         AUTOMATED_AGENT_SUITE = "${params.AUTOMATED_AGENT_SUITE}"
         AUTOMATED_AGENT_ENV = "${params.AUTOMATED_AGENT_ENV}"
+        ALLURE_JIRA_USERNAME = "${params.ALLURE_JIRA_USERNAME}"
+        ALLURE_JIRA_PASSWORD = "${params.ALLURE_JIRA_PASSWORD}"
     }
     stages {
         stage('Run the E2E Tests') {
             steps {
                 script {
                     sh 'mvn clean test && chmod -R 777 ./allure-results'
-                }
-            }
-        }
-        finally {
-            stage('Send results to XRay') {
-                dir(current_dir) {
-                    withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'sym-aws-qa', accessKeyVariable: 'AWS_ACCESS_KEY_ID', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
-                        env.xRayUser = sh(script: "AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID} AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY} aws ssm get-parameter --name /qa/xray/user --with-decryption --region us-east-1 --query Parameter.Value", returnStdout: true).trim()
-                        env.xRayToken = sh(script: "AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID} AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY} aws ssm get-parameter --name /qa/xray/token --with-decryption --region us-east-1 --query Parameter.Value", returnStdout: true).trim()
-                    }
                 }
             }
         }
@@ -67,8 +67,8 @@ pipeline {
                 properties += "\nINFRASTRUCTURE             =   ${env.AUTOMATED_AGENT_ENV}"
                 properties += "\nDATE                       =   ${TODAY}"
                 def jiraProperties = "ALLURE_JIRA_ENDPOINT  =   https://perzoinc.atlassian.net/rest"
-                jiraProperties += "\nALLURE_JIRA_USERNAME   =   ${env.xRayUser}"
-                jiraProperties += "\nALLURE_JIRA_PASSWORD   =   ${env.xRayToken}"
+                jiraProperties += "\nALLURE_JIRA_USERNAME   =   ${env.ALLURE_JIRA_USERNAME}"
+                jiraProperties += "\nALLURE_JIRA_PASSWORD   =   ${env.ALLURE_JIRA_PASSWORD}"
                 jiraProperties += "\nALLURE_XRAY_ENABLED=true"
                 writeFile(file: "allure-results/environment.properties", text: properties, encoding: "UTF-8")
                 writeFile(file: "allure-results/jira.properties", text: jiraProperties, encoding: "UTF-8")
