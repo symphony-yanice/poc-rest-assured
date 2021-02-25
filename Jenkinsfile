@@ -40,13 +40,6 @@ pipeline {
     stages {
         stage('Run the E2E Tests') {
             steps {
-                withCredentials([[$class: 'AmazonWebServicesCredentialsBinding',
-                                    credentialsId: 'sym-aws-qa',
-                                    accessKeyVariable: 'AWS_ACCESS_KEY_ID',
-                                    secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
-                    env.ALLURE_JIRA_USERNAME = sh(script: "AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID} AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY} aws ssm get-parameter --name /qa/xray/user --with-decryption --region us-east-1 --query Parameter.Value", returnStdout: true).trim()
-                    env.ALLURE_JIRA_PASSWORD = sh(script: "AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID} AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY} aws ssm get-parameter --name /qa/xray/token --with-decryption --region us-east-1 --query Parameter.Value", returnStdout: true).trim()
-                }
                 script {
                     sh 'mvn clean test && chmod -R 777 ./allure-results'
                 }
@@ -56,6 +49,11 @@ pipeline {
     post {
         always {
             script {
+                junit testResults: './allure-results/*', allowEmptyResults: true
+                    withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'sym-aws-qa', accessKeyVariable: 'AWS_ACCESS_KEY_ID', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
+                        env.ALLURE_JIRA_USERNAME = sh(script: "AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID} AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY} aws ssm get-parameter --name /qa/xray/user --with-decryption --region us-east-1 --query Parameter.Value", returnStdout: true).trim()
+                        env.ALLURE_JIRA_PASSWORD = sh(script: "AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID} AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY} aws ssm get-parameter --name /qa/xray/token --with-decryption --region us-east-1 --query Parameter.Value", returnStdout: true).trim()
+                }
                 def now = new Date()
                 TODAY = now.format("MMM dd, yyyy - hh:mm", TimeZone.getTimeZone('UTC'))
                 def properties = "AGENT_VERSION             =   ${env.AUTOMATED_AGENT_VERSION}"
