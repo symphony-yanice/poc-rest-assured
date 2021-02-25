@@ -40,14 +40,14 @@ pipeline {
     stages {
         stage('Run the E2E Tests') {
             steps {
+                withCredentials([[$class: 'AmazonWebServicesCredentialsBinding',
+                                    credentialsId: 'sym-aws-qa',
+                                    accessKeyVariable: 'AWS_ACCESS_KEY_ID',
+                                    secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
+                    env.ALLURE_JIRA_USERNAME = sh(script: "AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID} AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY} aws ssm get-parameter --name /qa/xray/user --with-decryption --region us-east-1 --query Parameter.Value", returnStdout: true).trim()
+                    env.ALLURE_JIRA_PASSWORD = sh(script: "AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID} AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY} aws ssm get-parameter --name /qa/xray/token --with-decryption --region us-east-1 --query Parameter.Value", returnStdout: true).trim()
+                }
                 script {
-                    withCredentials([[$class: 'AmazonWebServicesCredentialsBinding',
-                                        credentialsId: 'sym-aws-qa',
-                                        accessKeyVariable: 'AWS_ACCESS_KEY_ID',
-                                        secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
-                        env.ALLURE_JIRA_USERNAME = sh(script: "AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID} AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY} aws ssm get-parameter --name /qa/xray/user --with-decryption --region us-east-1 --query Parameter.Value", returnStdout: true).trim()
-                        env.ALLURE_JIRA_PASSWORD = sh(script: "AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID} AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY} aws ssm get-parameter --name /qa/xray/token --with-decryption --region us-east-1 --query Parameter.Value", returnStdout: true).trim()
-                    }
                     sh 'mvn clean test && chmod -R 777 ./allure-results'
                 }
             }
