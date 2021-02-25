@@ -10,14 +10,6 @@ pipeline {
     }
     parameters {
         string(
-          defaultValue: 'yanice.cherrak',
-          description: 'Select your Jira username.',
-          name: 'ALLURE_JIRA_USERNAME')
-        password(
-          defaultValue: 'secret',
-          description: 'Enter Password',
-          name: 'ALLURE_JIRA_PASSWORD')
-        string(
           defaultValue: 'https://develop2.symphony.com/agent',
           description: 'Select a base URL.',
           name: 'AUTOMATED_AGENT_BASEURL')
