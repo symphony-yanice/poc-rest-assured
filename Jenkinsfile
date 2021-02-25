@@ -38,14 +38,16 @@ pipeline {
           description: 'Select a test suite.',
           name: 'AUTOMATED_AGENT_SUITE')
     }
+    withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'sym-aws-qa', accessKeyVariable: 'AWS_ACCESS_KEY_ID', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
+        env.ALLURE_JIRA_USERNAME = sh(script: "AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID} AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY} aws ssm get-parameter --name /qa/xray/user --with-decryption --region us-east-1 --query Parameter.Value", returnStdout: true).trim()
+        env.ALLURE_JIRA_PASSWORD = sh(script: "AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID} AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY} aws ssm get-parameter --name /qa/xray/token --with-decryption --region us-east-1 --query Parameter.Value", returnStdout: true).trim()
+    }
     environment {
         AUTOMATED_AGENT_BASEURL = "${params.AUTOMATED_AGENT_BASEURL}"
         AUTOMATED_POD_VERSION = "${params.AUTOMATED_POD_VERSION}"
         AUTOMATED_AGENT_VERSION = "${params.AUTOMATED_AGENT_VERSION}"
         AUTOMATED_AGENT_SUITE = "${params.AUTOMATED_AGENT_SUITE}"
         AUTOMATED_AGENT_ENV = "${params.AUTOMATED_AGENT_ENV}"
-        ALLURE_JIRA_USERNAME = "${params.ALLURE_JIRA_USERNAME}"
-        ALLURE_JIRA_PASSWORD = "${params.ALLURE_JIRA_PASSWORD}"
     }
     stages {
         stage('Run the E2E Tests') {
@@ -66,12 +68,7 @@ pipeline {
                 properties += "\nSUITE                      =   ${env.AUTOMATED_AGENT_SUITE}"
                 properties += "\nINFRASTRUCTURE             =   ${env.AUTOMATED_AGENT_ENV}"
                 properties += "\nDATE                       =   ${TODAY}"
-                def jiraProperties = "ALLURE_JIRA_ENDPOINT  =   https://perzoinc.atlassian.net/rest"
-                jiraProperties += "\nALLURE_JIRA_USERNAME   =   ${env.ALLURE_JIRA_USERNAME}"
-                jiraProperties += "\nALLURE_JIRA_PASSWORD   =   ${env.ALLURE_JIRA_PASSWORD}"
-                jiraProperties += "\nALLURE_XRAY_ENABLED=true"
                 writeFile(file: "allure-results/environment.properties", text: properties, encoding: "UTF-8")
-                writeFile(file: "allure-results/jira.properties", text: jiraProperties, encoding: "UTF-8")
                 allure([
                     configPath: 'src/test/resources/config.yml',
                     reportBuildPolicy: 'ALWAYS',

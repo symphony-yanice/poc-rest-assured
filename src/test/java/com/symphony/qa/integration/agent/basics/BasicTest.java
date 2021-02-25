@@ -28,7 +28,7 @@ public class BasicTest {
     @DisplayName("test Health V2 with Actions (second)")
     @Description("**Given** I retrieve a 200 response from the v2 health check endpoint<br>" +
             "**Then** all the mandatory successful fields are correctly displayed")
-    @TmsLink("TEST-11132")
+    @TmsLink("TEST-21182")
     public void testHealthV2Second() {
         HealthCheckActions healthCheckActions = new HealthCheckActions();
         Response getHealthCheckResponse = healthCheckActions.IRetrieveV2HealthCheckEndpoint();

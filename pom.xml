@@ -182,6 +182,10 @@
                             <name>junit.jupiter.extensions.autodetection.enabled</name>
                             <value>true</value>
                         </property>
+                        <allure.ALLURE_JIRA_USERNAME>${env.ALLURE_JIRA_USERNAME}</allure.ALLURE_JIRA_USERNAME>
+                        <allure.ALLURE_JIRA_PASSWORD>${env.ALLURE_JIRA_PASSWORD}</allure.ALLURE_JIRA_PASSWORD>
+                        <allure.ALLURE_XRAY_ENABLED>true</allure.ALLURE_XRAY_ENABLED>
+                        <allure.ALLURE_XRAY_EXECUTION_ISSUES>TEST-21181</allure.ALLURE_XRAY_EXECUTION_ISSUES>
                         <allure.link.issue.pattern>https://perzoinc.atlassian.net/browse/{}</allure.link.issue.pattern>
                         <allure.link.tms.pattern>https://perzoinc.atlassian.net/browse/{}</allure.link.tms.pattern>
                     </systemProperties>
