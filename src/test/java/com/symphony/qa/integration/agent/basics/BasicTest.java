@@ -15,35 +15,35 @@ import org.junit.jupiter.api.parallel.ExecutionMode;
 public class BasicTest {
 
     @Test
-    @DisplayName("test Health V2 with Actions (first)")
-    @Description("*Given* I retrieve a 200 response from the v2 health check endpoint<br>" +
+    @DisplayName("test Health V3 with Actions (first)")
+    @Description("*Given* I retrieve a 200 response from the V3 health check endpoint<br>" +
             "*Then* all the mandatory successful fields are correctly displayed")
     @Issue("PLAT-10590")
-    public void testHealthV2First() {
+    public void testHealthV3First() {
         HealthCheckActions healthCheckActions = new HealthCheckActions();
-        Response getHealthCheckResponse = healthCheckActions.IRetrieveV2HealthCheckEndpoint();
-        healthCheckActions.IAssertAllV2HealthCheckSuccessfulFields(getHealthCheckResponse);
+        Response getHealthCheckResponse = healthCheckActions.IRetrieveV3HealthCheckEndpoint();
+        healthCheckActions.IAssertAllV3HealthCheckSuccessfulFields(getHealthCheckResponse);
     }
 
     @Test
-    @DisplayName("test Health V2 with Actions (second)")
-    @Description("**Given** I retrieve a 200 response from the v2 health check endpoint<br>" +
+    @DisplayName("test Health V3 with Actions (second)")
+    @Description("**Given** I retrieve a 200 response from the V3 health check endpoint<br>" +
             "**Then** all the mandatory successful fields are correctly displayed")
     @TmsLink("TEST-21182")
-    public void testHealthV2Second() {
+    public void testHealthV3Second() {
         HealthCheckActions healthCheckActions = new HealthCheckActions();
-        Response getHealthCheckResponse = healthCheckActions.IRetrieveV2HealthCheckEndpoint();
-        healthCheckActions.IAssertAllV2HealthCheckSuccessfulFields(getHealthCheckResponse);
+        Response getHealthCheckResponse = healthCheckActions.IRetrieveV3HealthCheckEndpoint();
+        healthCheckActions.IAssertAllV3HealthCheckSuccessfulFields(getHealthCheckResponse);
     }
 
     @Test
-    @DisplayName("test Health V2 with Actions (third)")
-    @Description("**Given** I retrieve a 200 response from the v2 health check endpoint<br>" +
+    @DisplayName("test Health V3 with Actions (third)")
+    @Description("**Given** I retrieve a 200 response from the V3 health check endpoint<br>" +
             "**Then** all the mandatory successful fields are correctly displayed")
-    public void testHealthV2Third() {
+    public void testHealthV3Third() {
         HealthCheckActions healthCheckActions = new HealthCheckActions();
-        Response getHealthCheckResponse = healthCheckActions.IRetrieveV2HealthCheckEndpoint();
-        healthCheckActions.IAssertAllV2HealthCheckSuccessfulFields(getHealthCheckResponse);
+        Response getHealthCheckResponse = healthCheckActions.IRetrieveV3HealthCheckEndpoint();
+        healthCheckActions.IAssertAllV3HealthCheckSuccessfulFields(getHealthCheckResponse);
     }
 
 }
